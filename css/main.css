@@ -361,3 +361,18 @@ address{
   text-align: right;
 }
 
+div.sorry p{
+  width : 100%;
+  display: inline-block;
+  animation-name: marquee;
+  padding-left: 100%;
+  white-space : nowrap;
+  animation-timing-function:linear;
+  animation-duration:15s;
+  animation-iteration-count:infinite;
+}
+@keyframes marquee {
+  from   { transform: translate(0%);}
+  99%,to { transform: translate(-100%);}
+}
+
