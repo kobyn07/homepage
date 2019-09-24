@@ -362,17 +362,7 @@ address{
 }
 
 div.sorry p{
-  width : 100%;
-  display: inline-block;
-  animation-name: marquee;
-  padding-left: 80%;
-  white-space : nowrap;
-  animation-timing-function:linear;
-  animation-duration:15s;
-  animation-iteration-count:infinite;
+  text-align: center;
 }
-@keyframes marquee {
-  from   { transform: translate(0%);}
-  99%,to { transform: translate(-100%);}
-}
+
 
