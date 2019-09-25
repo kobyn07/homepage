@@ -366,5 +366,10 @@ address{
 div.sorry p{
   text-align: center;
 }
+.lineup a{
+  color: black;
+  /* word-spacing: 6px; */
+  text-decoration: none;
+}
 
 
