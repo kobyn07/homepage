@@ -24,8 +24,8 @@ h1#title{
 div.categories{
     text-align: left;
     padding-left: 18px;
-    background: url(../fig/tag.png) no-repeat;
-    background-image: url(../fig/tag.png);
+    background: url(../img/tag.png) no-repeat;
+    background-image: url(../img/tag.png);
     background-size: 15px;
     background-attachment: initial;
     background-origin: initial;
@@ -346,6 +346,7 @@ code.prettyprint {
     border-radius: 0 4px 0 4px;}
 
 footer{
+    padding-top: 10px;
     border-top: 1px solid black;
     text-align: center;
 }
