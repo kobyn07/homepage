@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta name="author" content="kobyn">
+        <meta name="dcterms.date" content="2019-09-26">
+            <meta name="discription" content="## 方針$ の数字が出てこない $ 以上の数を求めたい。制約から 888,888 円以上は払う必要がない。また、最大の桁数が 6 桁なので、ある数字が支払えるかどうか十分高速に調べられる。よって、愚直に $ 以上 888,888 円以下の数字で満たされている数字を毎回判">
+    <title>AtCoder Beginner Contest 042 C - こだわり者いろはちゃん</title>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML" type="text/javascript"></script>
+        <!--[if lt IE 9]>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+            <![endif]-->
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/copy_button.js"></script>
+    <script src="../../js/notify.js"></script>
+    <link rel="stylesheet" href="../../css/main.css">
+
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@kobyn42" />
+    <meta name="twitter:creator" content="@kobyn" />
+
+
+</head>
+
+<body>
+    <header>
+        <h1>
+            <a href="https://kobyn.net">kobyn.net</a> / <a href="https://kobyn.net/competitive-programming/index.html">Competitive Programming</a>
+        </h1>
+    </header>
+    <h1 id="title">AtCoder Beginner Contest 042 C - こだわり者いろはちゃん</h1>
+    <p>公開日：2019-09-26<br />
+        更新日：-
+    </p>
+    <div class="categories">
+        <a href=../tags/index.html#AtCoder>AtCoder</a><a href=../tags/index.html#ABC>ABC</a><a href=../tags/index.html#シミュレーション>シミュレーション</a>
+    </div>
+    <div class="md2html-container">
+
+                <p><a href="https://atcoder.jp/contests/abc042/tasks/arc058_a">問題文</a></p>
+<h2 id="方針">方針</h2>
+<p><span class="math inline">\(D_i\)</span> の数字が出てこない <span class="math inline">\(N\)</span> 以上の数を求めたい。</p>
+<p>制約から 888,888 円以上は払う必要がない。 また、最大の桁数が 6 桁なので、ある数字が支払えるかどうか十分高速に調べられる。 よって、愚直に <span class="math inline">\(N\)</span> 以上 888,888 円以下の数字で満たされている数字を毎回判定すればよい。</p>
+<h2 id="解法">解法</h2>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> std;
+
+<span class="dt">int</span> main() {
+    <span class="dt">int</span> N, K;
+    cin &gt;&gt; N &gt;&gt; K;
+    vector&lt;<span class="dt">int</span>&gt; D(K);
+    <span class="cf">for</span> (<span class="kw">auto</span> &amp;&amp;i : D) {
+        cin &gt;&gt; i;
+    }
+
+    <span class="kw">auto</span> check = [&amp;](<span class="dt">int</span> x) {
+        <span class="cf">while</span> (x != <span class="dv">0</span>) {
+            <span class="dt">int</span> now = x % <span class="dv">10</span>;
+            <span class="cf">for</span> (<span class="kw">auto</span> &amp;&amp;i : D) {
+                <span class="cf">if</span> (now == i)
+                    <span class="cf">return</span> <span class="kw">false</span>;
+            }
+            x /= <span class="dv">10</span>;
+        }
+        <span class="cf">return</span> <span class="kw">true</span>;
+    };
+
+    <span class="kw">constexpr</span> <span class="dt">int</span> MAX = <span class="dv">1000000</span>;
+    <span class="cf">for</span> (<span class="dt">int</span> i = N; i &lt; MAX; i++) {
+        <span class="cf">if</span> (check(i)) {
+            cout &lt;&lt; i &lt;&lt; endl;
+            exit(<span class="dv">0</span>);
+        }
+    }
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+            </div>
+</body>
+
+<footer>
+    <a rel=license href=http://creativecommons.org/licenses/by/4.0/><img alt=クリエイティブ・コモンズ・ライセンス style=border-width:0 src=https://i.creativecommons.org/l/by/4.0/88x31.png /></a><br /><a rel=license href=http://creativecommons.org/licenses/by/4.0/>クリエイティブ・コモンズ 表示 4.0 国際 ライセンス</a>の下に提供されています。
+</footer>
+
+</html>
