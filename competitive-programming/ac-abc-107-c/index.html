@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta name="author" content="kobyn">
+        <meta name="dcterms.date" content="2019-09-25">
+            <meta name="discription" content="## 方針今回の問題では、すぬけ君は左右に移動することはできますが、飛び飛びに移動はできません。したがって、N 本のうちから、連続した K 本のろうそくに火をつける最小">
+    <title>AtCoder Beginner Contest 107 C - Candles</title>
+            <!--[if lt IE 9]>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+            <![endif]-->
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/copy_button.js"></script>
+    <script src="../../js/notify.js"></script>
+    <link rel="stylesheet" href="../../css/main.css">
+
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@kobyn42" />
+    <meta name="twitter:creator" content="@kobyn" />
+
+
+</head>
+
+<body>
+    <header>
+        <h1>
+            <a href="https://kobyn.net">kobyn.net</a> / <a href="https://kobyn.net/competitive-programming/index.html">Competitive Programming</a>
+        </h1>
+    </header>
+    <h1 id="title">AtCoder Beginner Contest 107 C - Candles</h1>
+    <p>公開日：2019-09-25<br />
+        更新日：2019-09-25
+    </p>
+    <div class="categories">
+        <a href=../tags/index.html#AtCoder>AtCoder</a><a href=../tags/index.html#ABC>ABC</a><a href=../tags/index.html#シミュレーション>シミュレーション</a>
+    </div>
+    <div class="md2html-container">
+
+                <p><a href="https://atcoder.jp/contests/abc107/tasks/arc101_a">問題文</a></p>
+<p><a href="https://atcoder.jp/contests/abc107/submissions/4559177">解答</a></p>
+<h2 id="方針">方針</h2>
+<p>今回の問題では、すぬけ君は左右に移動することはできますが、飛び飛びに移動はできません。 したがって、N 本のうちから、連続した K 本のろうそくに火をつける最小の時間を求めればよいことがわかります。</p>
+<p>ここで、ある地点 A をろうそくに火をつける最小の座標、 B を最大の座標とします。 すぬけ君の初期座標は 0 であることに注意して、総移動時間を考えます。 すると、すぬけ君の移動方法に 2 通りの移動方法があることに気づきます。</p>
+<ol type="1">
+<li>最初に A の方向に進み、B の方向に向かう方法</li>
+<li>最初に B の方向に進み、A の方向に向かう方法</li>
+</ol>
+<p>今回は最小の時間を求める必要があるので、2 通りの方法の小さい方がその区間の移動時間となります。</p>
+            </div>
+</body>
+
+<footer>
+    <a rel=license href=http://creativecommons.org/licenses/by/4.0/><img alt=クリエイティブ・コモンズ・ライセンス style=border-width:0 src=https://i.creativecommons.org/l/by/4.0/88x31.png /></a><br /><a rel=license href=http://creativecommons.org/licenses/by/4.0/>クリエイティブ・コモンズ 表示 4.0 国際 ライセンス</a>の下に提供されています。
+</footer>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta name="author" content="kobyn">
+        <meta name="dcterms.date" content="2019-09-25">
+            <meta name="discription" content="## 方針3 人を選ぶ方法は単純で、名前の , , , ,  から 3 つの組み合わせを選ぶ。そこから、同じ頭文字の人の数だけ掛けた値が選">
+    <title>AtCoder Beginner Contest 089 C - March</title>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML" type="text/javascript"></script>
+        <!--[if lt IE 9]>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+            <![endif]-->
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/copy_button.js"></script>
+    <script src="../../js/notify.js"></script>
+    <link rel="stylesheet" href="../../css/main.css">
+
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@kobyn42" />
+    <meta name="twitter:creator" content="@kobyn" />
+
+
+</head>
+
+<body>
+    <header>
+        <h1>
+            <a href="https://kobyn.net">kobyn.net</a> / <a href="https://kobyn.net/competitive-programming/index.html">Competitive Programming</a>
+        </h1>
+    </header>
+    <h1 id="title">AtCoder Beginner Contest 089 C - March</h1>
+    <p>公開日：2019-09-25<br />
+        更新日：-
+    </p>
+    <div class="categories">
+        <a href=../tags/index.html#AtCoder>AtCoder</a><a href=../tags/index.html#ABC>ABC</a><a href=../tags/index.html#bit全探索>bit全探索</a>
+    </div>
+    <div class="md2html-container">
+
+                <p><a href="https://atcoder.jp/contests/abc089/tasks/abc089_c">問題文</a></p>
+<p><a href="https://atcoder.jp/contests/abc089/submissions/4637647">回答</a></p>
+<h2 id="方針">方針</h2>
+<p>3 人を選ぶ方法は単純で、名前の <code>M</code>, <code>A</code>, <code>R</code>, <code>C</code>, <code>H</code> から 3 つの組み合わせを選ぶ。そこから、同じ頭文字の人の数だけ掛けた値が選んだ組み合わせで得られる数となる。 たとえば、<code>M</code> から始まる人が 2 人、<code>A</code>, <code>R</code> から始まる人がそれぞれ 1 人のばあいを考えてみる。 組み合わせは 1 通りだけなので、<span class="math inline">\(2 \times 1 \times 1 = 2 通り\)</span> が条件を満たす選ぶ方法となる。</p>
+<p>5 つの選択肢の中から 3 つを選ぶだけなので、たかだか 10 通りなので、その組み合わせだけを事前に選んでもよいが、今回は組み合わせを選ぶ方法に Bit 全探索を使う。 ちなみに、Bit 全探索で得られる組み合わせは 32 通りなので大した計算量ではない。</p>
+<p>答えが 32bit 整数型を超えることがあるので注意すること！</p>
+            </div>
+</body>
+
+<footer>
+    <a rel=license href=http://creativecommons.org/licenses/by/4.0/><img alt=クリエイティブ・コモンズ・ライセンス style=border-width:0 src=https://i.creativecommons.org/l/by/4.0/88x31.png /></a><br /><a rel=license href=http://creativecommons.org/licenses/by/4.0/>クリエイティブ・コモンズ 表示 4.0 国際 ライセンス</a>の下に提供されています。
+</footer>
+
+</html>
