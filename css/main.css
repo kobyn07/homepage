@@ -4,11 +4,16 @@ body {
   line-height: 1.6;
   padding-top: 10px;
   padding-bottom: 10px;
-  margin-left: 150px;
-  margin-right: 150px;
+
   position:  relative;
 
   background-color: #F6F7F8;}
+
+@media(min-width:801px){
+  body{
+    margin-left: 150px;
+    margin-right: 150px;}
+  }
 header a{
     text-decoration: none;
     color: black;
