@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta name="author" content="kobyn">
+        <meta name="dcterms.date" content="2019-09-28">
+            <meta name="discription" content="気をつけたいのが制約でAとBが最大^{18}$なので、最小公倍数が">
+    <title>yukicoder No.894 二種類のバス</title>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML" type="text/javascript"></script>
+        <!--[if lt IE 9]>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+            <![endif]-->
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/copy_button.js"></script>
+    <script src="../../js/notify.js"></script>
+    <link rel="stylesheet" href="../../css/main.css">
+
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@kobyn42" />
+    <meta name="twitter:creator" content="@kobyn" />
+
+
+</head>
+
+<body>
+    <header>
+        <h1>
+            <a href="https://kobyn.net">kobyn.net</a> / <a href="https://kobyn.net/competitive-programming/index.html">Competitive Programming</a>
+        </h1>
+    </header>
+    <h1 id="title">yukicoder No.894 二種類のバス</h1>
+    <p>公開日：2019-09-28<br />
+        更新日：2019-09-28
+    </p>
+    <div class="categories">
+        <a href=../tags/index.html#yukicoder>yukicoder</a><a href=../tags/index.html#数学>数学</a>
+    </div>
+    <div class="md2html-container">
+
+                <p><a href="https://yukicoder.me/problems/no/894">問題</a></p>
+<h2 id="方針">方針</h2>
+<p>T-1までの時間に、0と、AまたはBの倍数の時間が何個あるか数えたい。 よってT-1をAとBで割った数から、T-1をAとBの最小公倍数で割った数を引いた値が答えとなる。</p>
+<figure>
+<img src="./fig.png" />
+</figure>
+<p>気をつけたいのが制約でAとBが最大<span class="math inline">\(10^{18}\)</span>なので、最小公倍数が<code>unsigned long long</code>の範囲を超える。 C++17の機能には<code>lcm</code>関数を使えるところだが、オーバーフローするので注意すること。</p>
+<p>C++で多倍長整数はめんどくさいので、素直に Python とかに切り替えたほうがよい。</p>
+<p><del>C++17(GCC)の<code>unsigned long long</code>で計算すると、オーバーフローするけど、Tより大きな数なのでACしちゃった…</del></p>
+<h2 id="解答">解答</h2>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="im">import</span> math
+
+<span class="kw">def</span> lcm(x, y):
+    <span class="cf">return</span> (x<span class="op">*</span>y)<span class="op">//</span>math.gcd(x, y)
+
+T, A, B <span class="op">=</span> <span class="bu">map</span>(<span class="bu">int</span>, <span class="bu">input</span>().split())
+T <span class="op">-=</span> <span class="dv">1</span>
+ans <span class="op">=</span> T<span class="op">//</span>A <span class="op">+</span> T<span class="op">//</span>B <span class="op">+</span> <span class="dv">1</span>
+ans <span class="op">-=</span> T<span class="op">//</span>lcm(A, B)
+<span class="bu">print</span>(<span class="bu">int</span>(ans))</code></pre></div>
+            </div>
+</body>
+
+<footer>
+    <a rel=license href=http://creativecommons.org/licenses/by/4.0/><img alt=クリエイティブ・コモンズ・ライセンス style=border-width:0 src=https://i.creativecommons.org/l/by/4.0/88x31.png /></a><br /><a rel=license href=http://creativecommons.org/licenses/by/4.0/>クリエイティブ・コモンズ 表示 4.0 国際 ライセンス</a>の下に提供されています。
+</footer>
+
+</html>
