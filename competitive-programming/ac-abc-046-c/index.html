@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta name="author" content="kobyn">
+        <meta name="dcterms.date" content="2019-10-02">
+            <meta name="discription" content="## 方針 : A_i$の比が成り立つ最小の数の和を求めたい。制約の比は互いに素であることから、 = 1$のときの比が最初の得票数であることがわかる。<=2$のとき、それまでの最小の数をそれぞれ, a$とする。, a$ から  : A_i$の比になるような最">
+    <title>AtCoder Beginner Contest 046 C - AtCoDeerくんと選挙速報</title>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML" type="text/javascript"></script>
+        <!--[if lt IE 9]>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+            <![endif]-->
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/copy_button.js"></script>
+    <script src="../../js/notify.js"></script>
+    <link rel="stylesheet" href="../../css/main.css">
+
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@kobyn42" />
+    <meta name="twitter:creator" content="@kobyn" />
+
+
+</head>
+
+<body>
+    <header>
+        <h1>
+            <a href="https://kobyn.net">kobyn.net</a> / <a href="https://kobyn.net/competitive-programming/index.html">Competitive Programming</a>
+        </h1>
+    </header>
+    <h1 id="title">AtCoder Beginner Contest 046 C - AtCoDeerくんと選挙速報</h1>
+    <p>公開日：2019-10-02<br />
+        更新日：-
+    </p>
+    <div class="categories">
+        <a href=../tags/index.html#AtCoder>AtCoder</a><a href=../tags/index.html#ABC>ABC</a><a href=../tags/index.html#シミュレーション>シミュレーション</a><a href=../tags/index.html#数学>数学</a>
+    </div>
+    <div class="md2html-container">
+
+                <p><a href="https://atcoder.jp/contests/abc046/tasks/arc062_a">問題</a></p>
+<h2 id="方針">方針</h2>
+<p><span class="math inline">\(T_i : A_i\)</span>の比が成り立つ最小の数の和を求めたい。</p>
+<p>制約の比は互いに素であることから、<span class="math inline">\(i = 1\)</span>のときの比が最初の得票数であることがわかる。</p>
+<p><span class="math inline">\(i&lt;=2\)</span>のとき、それまでの最小の数をそれぞれ<span class="math inline">\(t, a\)</span>とする。 <span class="math inline">\(t, a\)</span> から <span class="math inline">\(T_i : A_i\)</span>の比になるような最小の値を探したい。 <span class="math display">\[
+\begin{eqnarray}
+  \left\{
+    \begin{array}{l}
+      t \leq nT_i \\
+      a \leq nA_i
+    \end{array}
+  \right.
+\end{eqnarray}
+\]</span> 上の式から条件に合った最小の<span class="math inline">\(n\)</span>を探せばよいことがわかる。 <span class="math inline">\(n = max(T/t, A/a)\)</span>（割り算はすべて切り上げ）が最適な<span class="math inline">\(n\)</span>である。</p>
+<h2 id="解答">解答</h2>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> std;
+
+<span class="kw">template</span> &lt;<span class="kw">class</span> T&gt; T up(T a, T div) { <span class="cf">return</span> (a + div - <span class="dv">1</span>) / div; }
+
+<span class="dt">int</span> main() {
+    <span class="dt">int</span> N;
+    cin &gt;&gt; N;
+    vector&lt;<span class="dt">long</span> <span class="dt">long</span>&gt; T(N), A(N);
+    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; N; i++) {
+        cin &gt;&gt; T[i] &gt;&gt; A[i];
+    }
+    <span class="dt">long</span> <span class="dt">long</span> a = A[<span class="dv">0</span>], t = T[<span class="dv">0</span>];
+    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">1</span>; i &lt; N; i++) {
+        <span class="dt">long</span> <span class="dt">long</span> n = max(up(a, A[i]), up(t, T[i]));
+        t     = n * T[i];
+        a     = n * A[i];
+    }
+    cout &lt;&lt; t + a &lt;&lt; endl;
+
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+            </div>
+</body>
+
+<footer>
+    <a rel=license href=http://creativecommons.org/licenses/by/4.0/><img alt=クリエイティブ・コモンズ・ライセンス style=border-width:0 src=https://i.creativecommons.org/l/by/4.0/88x31.png /></a><br /><a rel=license href=http://creativecommons.org/licenses/by/4.0/>クリエイティブ・コモンズ 表示 4.0 国際 ライセンス</a>の下に提供されています。
+</footer>
+
+</html>
