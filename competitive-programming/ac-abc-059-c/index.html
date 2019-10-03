@@ -47,7 +47,8 @@
 <h2 id="方針">方針</h2>
 <p>問題文から数列を(正, 負, 正, ...)または(負, 正, 負, ...)になるように変更する最小値を求めたい。</p>
 <p>答えはこれ以外の数列は存在しないので、1番目の数を正か負か決めて両方シミュレーションすればよい。 1回のシミュレーションの計算量は<span class="math inline">\(O(N)\)</span>なので十分高速に調べられる。</p>
-<p>答えが32bit整数よりも大きくなることがあるので注意すること。 ## 解法</p>
+<p>答えが32bit整数よりも大きくなることがあるので注意すること。</p>
+<h2 id="解法">解法</h2>
 <div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span>
 <span class="kw">using</span> <span class="kw">namespace</span> std;
 <span class="kw">using</span> ll = <span class="dt">long</span> <span class="dt">long</span>;
