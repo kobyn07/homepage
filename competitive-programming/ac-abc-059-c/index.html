@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta name="author" content="kobyn">
+        <meta name="dcterms.date" content="2019-10-03">
+            <meta name="discription" content="$なので十分高速に調べられ">
+    <title>AtCoder Beginner Contest 059 C - Sequence</title>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML" type="text/javascript"></script>
+        <!--[if lt IE 9]>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+            <![endif]-->
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/copy_button.js"></script>
+    <script src="../../js/notify.js"></script>
+    <link rel="stylesheet" href="../../css/main.css">
+
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@kobyn42" />
+    <meta name="twitter:creator" content="@kobyn" />
+
+
+</head>
+
+<body>
+    <header>
+        <h1>
+            <a href="https://kobyn.net">kobyn.net</a> / <a href="https://kobyn.net/competitive-programming/index.html">Competitive Programming</a>
+        </h1>
+    </header>
+    <h1 id="title">AtCoder Beginner Contest 059 C - Sequence</h1>
+    <p>公開日：2019-10-03<br />
+        更新日：2019-10-03
+    </p>
+    <div class="categories">
+        <a href=../tags/index.html#AtCoder>AtCoder</a><a href=../tags/index.html#シミュレーション>シミュレーション</a>
+    </div>
+    <div class="md2html-container">
+
+                <p><a href="https://atcoder.jp/contests/abc059/tasks/arc072_a">問題</a></p>
+<h2 id="方針">方針</h2>
+<p>問題文から数列を(正, 負, 正, ...)または(負, 正, 負, ...)になるように変更する最小値を求めたい。</p>
+<p>答えはこれ以外の数列は存在しないので、1番目の数を正か負か決めて両方シミュレーションすればよい。 1回のシミュレーションの計算量は<span class="math inline">\(O(N)\)</span>なので十分高速に調べられる。</p>
+<p>答えが32bit整数よりも大きくなることがあるので注意すること。 ## 解法</p>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> std;
+<span class="kw">using</span> ll = <span class="dt">long</span> <span class="dt">long</span>;
+
+<span class="dt">int</span> main() {
+    <span class="dt">int</span> N;
+    cin &gt;&gt; N;
+    vector&lt;<span class="dt">int</span>&gt; a(N);
+    <span class="cf">for</span> (<span class="kw">auto</span> &amp;&amp;i : a) {
+        cin &gt;&gt; i;
+    }
+
+    <span class="kw">auto</span> check = [&amp;](<span class="dt">int</span> sign) {
+        ll cost = <span class="dv">0</span>; <span class="co">// 必要な操作の回数</span>
+        ll sum  = <span class="dv">0</span>; <span class="co">// i番目までの合計</span>
+        <span class="kw">auto</span> v  = a;
+        <span class="cf">for</span> (<span class="kw">auto</span> &amp;&amp;i : v) {
+            sum += i;
+            <span class="co">// sumはsignの符号と合わせる</span>
+            <span class="cf">if</span> (sign * sum &lt; <span class="dv">0</span>) {
+                cost += abs(sum) + <span class="dv">1</span>;
+                sum += -sum + sign;
+            }
+            <span class="cf">if</span> (sum == <span class="dv">0</span>) {
+                cost++;
+                sum = sign;
+            }
+            sign *= <span class="dv">-1</span>;
+        }
+        <span class="cf">return</span> cost;
+    };
+
+    ll ans = min(check(<span class="dv">1</span>), check(<span class="dv">-1</span>));
+    cout &lt;&lt; ans &lt;&lt; endl;
+
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+            </div>
+</body>
+
+<footer>
+    <a rel=license href=http://creativecommons.org/licenses/by/4.0/><img alt=クリエイティブ・コモンズ・ライセンス style=border-width:0 src=https://i.creativecommons.org/l/by/4.0/88x31.png /></a><br /><a rel=license href=http://creativecommons.org/licenses/by/4.0/>クリエイティブ・コモンズ 表示 4.0 国際 ライセンス</a>の下に提供されています。
+</footer>
+
+</html>
