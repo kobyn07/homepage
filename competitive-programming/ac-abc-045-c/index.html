@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta name="author" content="kobyn">
+        <meta name="dcterms.date" content="2019-10-05">
+            <meta name="discription" content="$である。## 解法cpp#include <bits/stdc++.h>using namespace std;usin">
+    <title>AtCoder Beginner Contest 045 C - たくさんの数式</title>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML" type="text/javascript"></script>
+        <!--[if lt IE 9]>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+            <![endif]-->
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/copy_button.js"></script>
+    <script src="../../js/notify.js"></script>
+    <link rel="stylesheet" href="../../css/main.css">
+
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@kobyn42" />
+    <meta name="twitter:creator" content="@kobyn" />
+
+
+</head>
+
+<body>
+    <header>
+        <h1>
+            <a href="https://kobyn.net">kobyn.net</a> / <a href="https://kobyn.net/competitive-programming/index.html">Competitive Programming</a>
+        </h1>
+    </header>
+    <h1 id="title">AtCoder Beginner Contest 045 C - たくさんの数式</h1>
+    <p>公開日：2019-10-05<br />
+        更新日：2019-10-05
+    </p>
+    <div class="categories">
+        <a href=../tags/index.html#AtCoder>AtCoder</a><a href=../tags/index.html#全探索>全探索</a><a href=../tags/index.html#BFS>BFS</a>
+    </div>
+    <div class="md2html-container">
+
+                <p><a href="https://atcoder.jp/contests/abc045/tasks/arc061_a">問題</a></p>
+<h2 id="方針">方針</h2>
+<p>制約からすべての数式を列挙できることがわかる。 <span class="math inline">\(i\)</span>桁目の数字の前に<code>+</code>を挿入（する or しない）かどうかを再帰的に実装する。 計算量は<span class="math inline">\(O(2^N)\)</span>である。</p>
+<h2 id="解法">解法</h2>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> std;
+<span class="kw">using</span> ll = <span class="dt">long</span> <span class="dt">long</span>;
+
+<span class="co">// 区切り文字を削除して分割する</span>
+<span class="co">// 分割したあとの型はstd::vector</span>
+vector&lt;string&gt; split(<span class="at">const</span> string &amp;s, <span class="dt">char</span> remove) {
+    istringstream stream(s);
+    string field;
+    vector&lt;string&gt; ans;
+    <span class="cf">while</span> (getline(stream, field, remove)) {
+        ans.emplace_back(field);
+    }
+    <span class="cf">return</span> ans;
+}
+
+<span class="dt">int</span> main() {
+    string s;
+    cin &gt;&gt; s;
+    ll ans = <span class="dv">0</span>;
+
+    <span class="kw">auto</span> sum = [](string x) {
+        <span class="kw">auto</span> v = split(x, <span class="st">&#39;+&#39;</span>);
+        ll ret = <span class="dv">0</span>;
+        <span class="cf">for</span> (<span class="kw">auto</span> &amp;&amp;i : v) {
+            ret += stoll(i);
+        }
+        <span class="cf">return</span> ret;
+    };
+
+    <span class="kw">auto</span> dfs = [&amp;](<span class="kw">auto</span> f, <span class="dt">int</span> now, string formula) {
+        <span class="cf">if</span> (now == s.size()) {
+            ans += sum(formula);
+            <span class="cf">return</span>;
+        }
+        f(f, now + <span class="dv">1</span>, formula + string{s[now]});
+        f(f, now + <span class="dv">1</span>, formula + <span class="st">&quot;+&quot;</span> + string{s[now]});
+    };
+
+    dfs(dfs, <span class="dv">1</span>, {s[<span class="dv">0</span>]});
+    cout &lt;&lt; ans &lt;&lt; endl;
+
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+            </div>
+</body>
+
+<footer>
+    <a rel=license href=http://creativecommons.org/licenses/by/4.0/><img alt=クリエイティブ・コモンズ・ライセンス style=border-width:0 src=https://i.creativecommons.org/l/by/4.0/88x31.png /></a><br /><a rel=license href=http://creativecommons.org/licenses/by/4.0/>クリエイティブ・コモンズ 表示 4.0 国際 ライセンス</a>の下に提供されています。
+</footer>
+
+</html>
