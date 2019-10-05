@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta name="author" content="kobyn">
+        <meta name="dcterms.date" content="2019-10-05">
+            <meta name="discription" content="## char -> string一様初期化でにする。## string -> charは要素アクセスでに変換される。## char -> intの">
+    <title>string型（char型）と数値の相互変換</title>
+            <!--[if lt IE 9]>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+            <![endif]-->
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/copy_button.js"></script>
+    <script src="../../js/notify.js"></script>
+    <link rel="stylesheet" href="../../css/main.css">
+
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@kobyn42" />
+    <meta name="twitter:creator" content="@kobyn" />
+
+
+</head>
+
+<body>
+    <header>
+        <h1>
+            <a href="https://kobyn.net">kobyn.net</a> / <a href="https://kobyn.net/competitive-programming/index.html">Competitive Programming</a>
+        </h1>
+    </header>
+    <h1 id="title">string型（char型）と数値の相互変換</h1>
+    <p>公開日：2019-10-05<br />
+        更新日：-
+    </p>
+    <div class="categories">
+        <a href=../tags/index.html#tips>tips</a>
+    </div>
+    <div class="md2html-container">
+
+                <h2 id="char---string">char -&gt; string</h2>
+<p>一様初期化で<code>string型</code>にする。</p>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="dt">char</span> c = <span class="st">&#39;c&#39;</span>
+string s = string{c};</code></pre></div>
+<h2 id="string---char">string -&gt; char</h2>
+<p><code>string</code>は要素アクセスで<code>char型</code>に変換される。</p>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint">string s = <span class="st">&quot;string&quot;</span>;
+<span class="dt">char</span> c = s[<span class="dv">0</span>]; <span class="co">// c==&#39;c&#39;</span></code></pre></div>
+<h2 id="char---int">char -&gt; int</h2>
+<p><code>char型</code>の<code>'0'</code>と相対的な差を取ることで<code>int型</code>に変換できる。</p>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="dt">char</span> c = <span class="st">&#39;9&#39;</span>;
+<span class="dt">int</span> i = c - <span class="st">&#39;0&#39;</span>; <span class="co">// i==9</span></code></pre></div>
+<h2 id="string---int数値型">string -&gt; int（数値型）</h2>
+<p>便利な関数<code>std::stoi()</code>があるのでそれを使う。</p>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint">string s = <span class="st">&quot;100&quot;</span>;
+<span class="dt">int</span> i = <span class="bu">std::</span>stoi(s); <span class="co">// i==100</span></code></pre></div>
+<p><code>long long型</code>は<code>std::stoll()</code>を使う。 他の数値型は<a href="https://cpprefjp.github.io/reference/string/stoi.html">cpprefjp - C++日本語リファレンス std::stoi</a>の下の方にある<code>関連リンク -&gt; ファミリー</code>あたりを参照すること。</p>
+<h2 id="int数値型--string">int（数値型）-&gt; string</h2>
+<p>便利な関数<code>std::to_string()</code>を使う。</p>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="dt">int</span> i = <span class="dv">100</span>;
+string s = <span class="bu">std::</span>to_string(i);</code></pre></div>
+<ul>
+<li>その他の詳しい情報<a href="https://cpprefjp.github.io/reference/string/to_string.html">cpprefjp - C++日本語リファレンス std::to_string()</a></li>
+</ul>
+            </div>
+</body>
+
+<footer>
+    <a rel=license href=http://creativecommons.org/licenses/by/4.0/><img alt=クリエイティブ・コモンズ・ライセンス style=border-width:0 src=https://i.creativecommons.org/l/by/4.0/88x31.png /></a><br /><a rel=license href=http://creativecommons.org/licenses/by/4.0/>クリエイティブ・コモンズ 表示 4.0 国際 ライセンス</a>の下に提供されています。
+</footer>
+
+</html>
