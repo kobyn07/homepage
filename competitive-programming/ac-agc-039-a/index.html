@@ -7,11 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <meta name="author" content="kobyn">
-    <meta name="dcterms.date" content="2019-10-06">
-    <meta name="discription"
-        content="## 方針|S|*K の長さの文字列があり、すべての隣り合う文字が違うようにしたい。前処理として、同じ文字が連続している数を記録する。文字列Sの両端に注目して問題を解きたい。Sがすべて同じ文字のとき、答えは|S|*K/2文字列Sの両端の種類によって場合分けをする。* abcdのように両">
+        <meta name="dcterms.date" content="2019-10-06">
+            <meta name="discription" content="## 方針|S|*K の長さの文字列があり、すべての隣り合う文字が違うようにしたい。前処理として、同じ文字が連続している数を記録する。文字列Sの両端に注目して問題を解きたい。Sがすべて同じ文字のとき、答えは|S|*K/2文字列Sの両端の種類によって場合分けをする。* abcdのように両">
     <title>AtCoder Grand Contest 039 A - Connection and Disconnection</title>
-    <!--[if lt IE 9]>
+            <!--[if lt IE 9]>
             <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
             <![endif]-->
 
@@ -31,8 +30,7 @@
 <body>
     <header>
         <h1>
-            <a href="https://kobyn.net">kobyn.net</a> / <a
-                href="https://kobyn.net/competitive-programming/index.html">Competitive Programming</a>
+            <a href="https://kobyn.net">kobyn.net</a> / <a href="https://kobyn.net/competitive-programming/index.html">Competitive Programming</a>
         </h1>
     </header>
     <h1 id="title">AtCoder Grand Contest 039 A - Connection and Disconnection</h1>
@@ -40,22 +38,23 @@
         更新日：2019-10-06
     </p>
     <div class="categories">
-        <a href=../tags/index.html#AtCoder>AtCoder </a> <a href=../tags/index.html#場合分け>場合分け </a> <a
-            href=../tags/index.html#注意力>注意力 </a> </div> <div class="md2html-container">
+        <a href=../tags/index.html#AtCoder>AtCoder</a><a href=../tags/index.html#場合分け>場合分け</a><a href=../tags/index.html#注意力>注意力</a>
+    </div>
+    <div class="md2html-container">
 
-            <p><a href="https://atcoder.jp/contests/agc039/tasks/agc039_a">問題</a></p>
-            <h2 id="方針">方針</h2>
-            <p>|S|*K の長さの文字列があり、すべての隣り合う文字が違うようにしたい。</p>
-            <p>前処理として、同じ文字が連続している数を記録する。</p>
-            <p>文字列Sの両端に注目して問題を解きたい。</p>
-            <p>Sがすべて同じ文字のとき、答えは|S|*K/2</p>
-            <p>文字列Sの両端の種類によって場合分けをする。 * <code>abcd</code>のように両端が異なる場合、同じ文字が連続している数にKをかけた値を2で割った数の総和にが答えとなる。 *
-                <code>aaabca</code>のように両端が同じ文字の場合を考える。 たとえば、<code>aaabcaaaabca</code>と連続したとき、両端がつながった部分に文字変更が発生する。
-                しかし、<code>aabaa</code>が連続したとき、<code>aabaaaabaa</code>となり、文字変更は発生しない。 この違いは両端の同じ文字の数がどちらも奇数のとき文字変更が発生する。
-                文字変更が発生したとき、両端がつながる個数はK-1個なので、総和にK-1を加える。</p>
-            <h2 id="解法">解法</h2>
-            <div class="prettyprint">
-                <pre class="prettyprint"><code class="prettyprint"><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span>
+                <p><a href="https://atcoder.jp/contests/agc039/tasks/agc039_a">問題</a></p>
+<h2 id="方針">方針</h2>
+<p>|S|*K の長さの文字列があり、すべての隣り合う文字が違うようにしたい。</p>
+<p>前処理として、同じ文字が連続している数を記録する。</p>
+<p>文字列Sの両端に注目して問題を解きたい。</p>
+<p>Sがすべて同じ文字のとき、答えは|S|*K/2</p>
+<p>文字列Sの両端の種類によって場合分けをする。</p>
+<ul>
+<li><code>abcd</code>のように両端が異なる場合、同じ文字が連続している数にKをかけた値を2で割った数の総和にが答えとなる。</li>
+<li><code>aaabca</code>のように両端が同じ文字の場合を考える。 たとえば、<code>aaabcaaaabca</code>と連続したとき、両端がつながった部分に文字変更が発生する。 しかし、<code>aabaa</code>が連続したとき、<code>aabaaaabaa</code>となり、文字変更は発生しない。 この違いは両端の同じ文字の数がどちらも奇数のとき文字変更が発生する。 文字変更が発生したとき、両端がつながる個数はK-1個なので、総和にK-1を加える。</li>
+</ul>
+<h2 id="解法">解法</h2>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span>
 <span class="kw">using</span> <span class="kw">namespace</span> std;
 <span class="kw">using</span> ll = <span class="dt">long</span> <span class="dt">long</span>;
 
@@ -100,23 +99,20 @@ vector&lt;<span class="dt">int</span>&gt; run_length(<span class="at">const</spa
     }
     cout &lt;&lt; ans &lt;&lt; endl;
     <span class="cf">return</span> <span class="dv">0</span>;
-}</code></pre>
+}</code></pre></div>
+<h2 id="嘘解法">嘘解法</h2>
+<blockquote class="twitter-tweet">
+<p lang="ja" dir="ltr">
+<a href="https://t.co/mP5j9EGmfQ">https://t.co/mP5j9EGmfQ</a> この解法で aabaa 3 を入力すると、期待した答えは6ですが、8を出力します…
+</p>
+— kobyn (<span class="citation" data-cites="kobyn42">@kobyn42</span>) <a href="https://twitter.com/kobyn42/status/1180676567191576576?ref_src=twsrc%5Etfw">October 6, 2019</a>
+</blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             </div>
-            <h2 id="嘘解法">嘘解法</h2>
-            <blockquote class="twitter-tweet tw-align-center">
-                <p lang="ja" dir="ltr">
-                    <a href="https://t.co/mP5j9EGmfQ">https://t.co/mP5j9EGmfQ</a> この解法で aabaa 3
-                    を入力すると、期待した答えは6ですが、8を出力します…
-                </p>
-                — kobyn (<span class="citation" data-cites="kobyn42">@kobyn42</span>) <a
-                    href="https://twitter.com/kobyn42/status/1180676567191576576?ref_src=twsrc%5Etfw">October 6,
-                    2019</a>
-            </blockquote>
-            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    </div>
 </body>
 
 <footer>
-    <a rel=license href=http://creativecommons.org/licenses/by/4.0/> <img alt=クリエイティブ・コモンズ・ライセンス style=border-width:0
-        src=https://i.creativecommons.org/l/by/4.0/88x31.png /></a><br /><a rel=license
-        href=http://creativecommons.org/licenses/by/4.0/>クリエイティブ・コモンズ 表示 4.0 国際 ライセンス</a>の下に提供されています。 </footer> </html>
+    <a rel=license href=http://creativecommons.org/licenses/by/4.0/><img alt=クリエイティブ・コモンズ・ライセンス style=border-width:0 src=https://i.creativecommons.org/l/by/4.0/88x31.png /></a><br /><a rel=license href=http://creativecommons.org/licenses/by/4.0/>クリエイティブ・コモンズ 表示 4.0 国際 ライセンス</a>の下に提供されています。
+</footer>
+
+</html>
