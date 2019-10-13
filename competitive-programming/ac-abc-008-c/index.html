@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta name="author" content="kobyn">
+        <meta name="dcterms.date" content="2019-10-13">
+            <meta name="discription" content="## 方針コインを1列に並び替える。$ 番目のコインは -1$ 番目までの約数の数が偶数のとき表となる。!$ 通りのすべての組み合わせで表の数の期待値を求めたい。!$ 通りすべてを愚直に求める代わりに、$ のコインが表になる確率を足し合わせると言い換えられる。これは期待">
+    <title>AtCoder Beginner Contest 008 C - コイン</title>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML" type="text/javascript"></script>
+        <!--[if lt IE 9]>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+            <![endif]-->
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/copy_button.js"></script>
+    <script src="../../js/notify.js"></script>
+    <link rel="stylesheet" href="../../css/main.css">
+
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@kobyn42" />
+    <meta name="twitter:creator" content="@kobyn" />
+
+
+</head>
+
+<body>
+    <header>
+        <h1>
+            <a href="https://kobyn.net">kobyn.net</a> / <a href="https://kobyn.net/competitive-programming/index.html">Competitive Programming</a>
+        </h1>
+    </header>
+    <h1 id="title">AtCoder Beginner Contest 008 C - コイン</h1>
+    <p>公開日：2019-10-13<br />
+        更新日：2019-10-13
+    </p>
+    <div class="categories">
+        <a href=../tags/index.html#AtCoder>AtCoder</a><a href=../tags/index.html#数学>数学</a><a href=../tags/index.html#期待値>期待値</a>
+    </div>
+    <div class="md2html-container">
+
+                <p><a href="https://atcoder.jp/contests/abc008/tasks/abc008_3">問題</a></p>
+<h2 id="方針">方針</h2>
+<p>コインを1列に並び替える。 <span class="math inline">\(i\)</span> 番目のコインは <span class="math inline">\(i-1\)</span> 番目までの約数の数が偶数のとき表となる。 <span class="math inline">\(N!\)</span> 通りのすべての組み合わせで表の数の期待値を求めたい。</p>
+<p><span class="math inline">\(N!\)</span> 通りすべてを愚直に求める代わりに、<span class="math inline">\(i\)</span> のコインが表になる確率を足し合わせると言い換えられる。 これは期待値の性質を使っている。（参考ページより）</p>
+<p><span class="math inline">\(i\)</span> のコインが表になる確率を考える。 <span class="math inline">\(i\)</span> のコインがひっくり返る条件は、それ以外のコインが<span class="math inline">\(i\)</span>のコインの約数である数に左右される。 その数を<span class="math inline">\(cnt\)</span>とする。 <span class="math inline">\(cnt\)</span>以外のコインはどこに並んでいようが関係がないので、無視する。</p>
+<p><span class="math inline">\(cnt+1\)</span> の並びのなかで（+1は<span class="math inline">\(i\)</span> のコイン）、表になる場合の数を考える。</p>
+<ul>
+<li><span class="math inline">\(cnt\)</span> が偶数のとき<span class="math inline">\(\frac{cnt}{2}+1\)</span> 通り</li>
+<li><span class="math inline">\(cnt\)</span> が奇数のとき <span class="math inline">\(\frac{cnt+1}{2}\)</span> 通り</li>
+</ul>
+<p>よって、<span class="math inline">\(i\)</span>のコインが表になる確率は、</p>
+<ul>
+<li><span class="math inline">\(cnt\)</span> が偶数のとき<span class="math inline">\(\frac{1}{2}\)</span></li>
+<li><span class="math inline">\(cnt\)</span> が奇数のとき<span class="math inline">\(\frac{cnt+2}{2cnt+2}\)</span></li>
+</ul>
+<p>計算量は<span class="math inline">\(cnt\)</span>を求めるために<span class="math inline">\(O(N^2)\)</span>となる。</p>
+<h2 id="解法">解法</h2>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> std;
+
+<span class="dt">void</span> fprint() { <span class="bu">std::</span>cout &lt;&lt; <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>; }
+<span class="kw">template</span> &lt;<span class="kw">class</span> H, <span class="kw">class</span>... T&gt; <span class="dt">void</span> fprint(H &amp;&amp;head, T &amp;&amp;... args) {
+    <span class="bu">std::</span>cout &lt;&lt; <span class="bu">std::</span>fixed &lt;&lt; <span class="bu">std::</span>setprecision(<span class="dv">10</span>) &lt;&lt; head;
+    <span class="kw">sizeof</span>...(args) == <span class="dv">0</span> ? <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;&quot;</span> : <span class="bu">std::</span>cout &lt;&lt; <span class="st">&#39; &#39;</span>;
+    fprint(<span class="bu">std::</span>forward&lt;T&gt;(args)...);
+}
+
+<span class="dt">int</span> main() {
+    <span class="dt">int</span> N;
+    cin &gt;&gt; N;
+    vector&lt;<span class="dt">int</span>&gt; c(N), cnt(N);
+    <span class="cf">for</span> (<span class="kw">auto</span> &amp;&amp;i : c) {
+        cin &gt;&gt; i;
+    }
+
+    <span class="cf">for</span> (<span class="dt">int</span> main = <span class="dv">0</span>; main &lt; N; main++) {
+        <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; N; i++) {
+            <span class="cf">if</span> (main == i)
+                <span class="cf">continue</span>;
+            <span class="cf">if</span> (c[main] % c[i] == <span class="dv">0</span>)
+                cnt[main]++;
+        }
+    }
+
+    <span class="dt">double</span> ans = <span class="fl">0.0</span>;
+
+    <span class="cf">for</span> (<span class="kw">auto</span> &amp;&amp;i : cnt) {
+        <span class="cf">if</span> (i % <span class="dv">2</span> == <span class="dv">0</span>) {
+            ans += (<span class="dt">double</span>)(i + <span class="dv">2</span>) / (<span class="dv">2</span> * i + <span class="dv">2</span>);
+        } <span class="cf">else</span> {
+            ans += <span class="fl">0.5</span>;
+        }
+    }
+    fprint(ans);
+
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>参考ページ <a href="http://w3e.kanazawa-it.ac.jp/math/category/kakuritu/kakuritu/henkan-tex.cgi?target=/math/category/kakuritu/kakuritu/kitaiti-no-teigi.html">期待値の求め方</a></p>
+            </div>
+</body>
+
+<footer>
+    <a rel=license href=http://creativecommons.org/licenses/by/4.0/><img alt=クリエイティブ・コモンズ・ライセンス style=border-width:0 src=https://i.creativecommons.org/l/by/4.0/88x31.png /></a><br /><a rel=license href=http://creativecommons.org/licenses/by/4.0/>クリエイティブ・コモンズ 表示 4.0 国際 ライセンス</a>の下に提供されています。
+</footer>
+
+</html>

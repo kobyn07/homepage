@@ -375,5 +375,8 @@ div.sorry p{
   /* word-spacing: 6px; */
   text-decoration: none;
 }
+blockquote.twitter-tweet{
+  text-align: center;
+}
 
 
