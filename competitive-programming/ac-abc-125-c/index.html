@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta name="author" content="kobyn">
+        <meta name="dcterms.date" content="2019-10-14">
+            <meta name="discription" content="[問題](https://atcoder.jp/contests/abc125/tasks/abc125_c)## 方針書き換えられるのは 1 つだけである。書き換える数を A_i とすると、それ以外の最大公約数とA_iを同じにすれば最適である。つまり、A_iを抜いたA%のすべての最大公約数を求めればよい。これを愚直に計算すると計算量はO(N^2 log N)となる。（N">
+    <title>AtCoder Beginner Contest 125 C - GCD on Blackboard</title>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML" type="text/javascript"></script>
+        <!--[if lt IE 9]>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+            <![endif]-->
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/copy_button.js"></script>
+    <script src="../../js/notify.js"></script>
+    <link rel="stylesheet" href="../../css/main.css">
+
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@kobyn42" />
+    <meta name="twitter:creator" content="@kobyn" />
+
+
+</head>
+
+<body>
+    <header>
+        <h1>
+            <a href="https://kobyn.net">kobyn.net</a> / <a href="https://kobyn.net/competitive-programming/index.html">Competitive Programming</a>
+        </h1>
+    </header>
+    <h1 id="title">AtCoder Beginner Contest 125 C - GCD on Blackboard</h1>
+    <p>公開日：2019-10-14<br />
+        更新日：2019-10-14
+    </p>
+    <div class="categories">
+        <a href=../tags/index.html#AtCoder>AtCoder</a><a href=../tags/index.html#数学>数学</a><a href=../tags/index.html#GCD>GCD</a>
+    </div>
+    <div class="md2html-container">
+
+                <p><a href="https://atcoder.jp/contests/abc125/tasks/abc125_c">問題</a></p>
+<h2 id="方針">方針</h2>
+<p>書き換えられるのは 1 つだけである。 書き換える数を <span class="math inline">\(A_i\)</span> とすると、それ以外の最大公約数と<span class="math inline">\(A_i\)</span>を同じにすれば最適である。 つまり、<span class="math inline">\(A_i\)</span>を抜いた<span class="math inline">\(A%のすべての最大公約数を求めればよい。 これを愚直に計算すると計算量は\)</span>O(N^2 N)<span class="math inline">\(となる。（\)</span>N N$ で<span class="math inline">\(A_i\)</span> 以外の最大公約数を求める行為を<span class="math inline">\(N\)</span>回繰り返す）</p>
+<p>これでは計算が間に合わないので、より高速な解法を考える。 <span class="math inline">\(A_i\)</span>抜きの最大公約数は<span class="math inline">\(A_{i-1}\)</span>までのすべての最大公約数<span class="math inline">\(g_1\)</span>と<span class="math inline">\(A_{i+1}\)</span>から<span class="math inline">\(A_N\)</span>までのすべての最大公約数<span class="math inline">\(g_2\)</span>の最大公約数をとったものと言い換えられる。 前もって計算することで、計算量を<span class="math inline">\(O(N log N)\)</span>にできる。</p>
+<figure>
+<img src="./fig.png" />
+</figure>
+<h2 id="解法">解法</h2>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> std;
+
+<span class="kw">template</span> &lt;<span class="kw">class</span> T&gt; T gcd(T x, T y) {
+    <span class="co">// 最小公倍数を求める</span>
+    <span class="cf">if</span> (y == <span class="dv">0</span>)
+        <span class="cf">return</span> x;
+    gcd(y, x % y);
+}
+
+<span class="dt">int</span> main() {
+    <span class="dt">int</span> N;
+    cin &gt;&gt; N;
+    vector&lt;<span class="dt">int</span>&gt; A(N);
+    <span class="cf">for</span> (<span class="kw">auto</span> &amp;&amp;i : A) {
+        cin &gt;&gt; i;
+    }
+
+    <span class="co">// 前計算</span>
+    vector&lt;<span class="dt">int</span>&gt; l(N), r(N);
+    l[<span class="dv">0</span>]     = A[<span class="dv">0</span>];
+    r[N - <span class="dv">1</span>] = A[N - <span class="dv">1</span>];
+    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">1</span>; i &lt; N; i++) {
+        l[i] = gcd(l[i - <span class="dv">1</span>], A[i]);
+    }
+    <span class="cf">for</span> (<span class="dt">int</span> i = N - <span class="dv">2</span>; i &gt;= <span class="dv">0</span>; i--) {
+        r[i] = gcd(r[i + <span class="dv">1</span>], A[i]);
+    }
+
+    <span class="dt">int</span> ans = max(l[N - <span class="dv">2</span>], r[<span class="dv">1</span>]);
+
+    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">1</span>; i &lt; N - <span class="dv">1</span>; i++) {
+        ans = max(ans, gcd(l[i - <span class="dv">1</span>], r[i + <span class="dv">1</span>]));
+    }
+    cout &lt;&lt; ans &lt;&lt; endl;
+
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+            </div>
+</body>
+
+<footer>
+    <a rel=license href=http://creativecommons.org/licenses/by/4.0/><img alt=クリエイティブ・コモンズ・ライセンス style=border-width:0 src=https://i.creativecommons.org/l/by/4.0/88x31.png /></a><br /><a rel=license href=http://creativecommons.org/licenses/by/4.0/>クリエイティブ・コモンズ 表示 4.0 国際 ライセンス</a>の下に提供されています。
+</footer>
+
+</html>
