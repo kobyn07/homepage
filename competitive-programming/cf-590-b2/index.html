@@ -36,7 +36,7 @@
     </header>
     <h1 id="title">Codeforces Round 590 B2. Social Network (hard version)</h1>
     <p>公開日：2019-10-16<br />
-        更新日：-
+        更新日：2019-10-16
     </p>
     <div class="categories">
         <a href=../tags/index.html#Codeforces>Codeforces</a><a href=../tags/index.html#データ構造>データ構造</a>
@@ -49,22 +49,22 @@
 <p><span class="math inline">\(O(n^2)\)</span> の解法はすぐに思いつく。 しかし、制約から不可能なのでより高速な解法を考える。</p>
 <p>画面上に表示されている <span class="math inline">\(id\)</span> を管理するのと、次にくるメッセージが現在画面上に表示されているかを管理するのを分けて考える。 表示されている <span class="math inline">\(id\)</span> を管理するのは <code>std::queue</code> を用いる。 FIFO 構造を使うことで画面の表示を再現できる。（古いメッセージから先入れして、新しいメッセージが来たら先出しする） 次に来るメッセージが画面上に存在しているかのチェックは <code>std::set</code> を用いる。 <code>count()</code> は <span class="math inline">\(\log N\)</span> の計算量で高速に存在チェックできる。 <code>erase()</code> も <span class="math inline">\(\log N\)</span> の計算量で削除できる。</p>
 <h2 id="解法">解法</h2>
-<pre><code>#include &lt;bits/stdc++.h&gt;
-using namespace std;
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> std;
 
-int main() {
-    int N, K;
+<span class="dt">int</span> main() {
+    <span class="dt">int</span> N, K;
     cin &gt;&gt; N &gt;&gt; K;
 
-    queue&lt;int&gt; que;
-    set&lt;int&gt; st;
+    queue&lt;<span class="dt">int</span>&gt; que;
+    set&lt;<span class="dt">int</span>&gt; st;
 
-    for (int i = 0; i &lt; N; i++) {
-        int id;
+    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; N; i++) {
+        <span class="dt">int</span> id;
         cin &gt;&gt; id;
-        if (!st.count(id)) {
-            if (K == que.size()) {
-                int rm = que.front();
+        <span class="cf">if</span> (!st.count(id)) {
+            <span class="cf">if</span> (K == que.size()) {
+                <span class="dt">int</span> rm = que.front();
                 que.pop();
                 st.erase(rm);
             }
@@ -73,23 +73,23 @@ int main() {
         }
     }
 
-    // que は古いほうが先頭なので答えは que の逆順
-    vector&lt;int&gt; ans;
+    <span class="co">// que は古いほうが先頭なので答えは que の逆順</span>
+    vector&lt;<span class="dt">int</span>&gt; ans;
     ans.reserve(que.size());
-    for (int i = 0; i &lt; st.size(); i++) {
-        int now = que.front();
+    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; st.size(); i++) {
+        <span class="dt">int</span> now = que.front();
         que.pop();
         ans.emplace_back(now);
     }
     reverse(ans.begin(), ans.end());
 
     cout &lt;&lt; ans.size() &lt;&lt; endl;
-    for (int i = 0; i &lt; ans.size(); i++) {
-        cout &lt;&lt; ans[i] &lt;&lt; (i == ans.size() - 1 ? &#39;\n&#39; : &#39; &#39;);
+    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; ans.size(); i++) {
+        cout &lt;&lt; ans[i] &lt;&lt; (i == ans.size() - <span class="dv">1</span> ? <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span> : <span class="st">&#39; &#39;</span>);
     }
 
-    return 0;
-}</code></pre>
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
             </div>
 </body>
 
