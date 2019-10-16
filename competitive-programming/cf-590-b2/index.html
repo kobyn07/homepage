@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta name="author" content="kobyn">
+        <meta name="dcterms.date" content="2019-10-16">
+            <meta name="discription" content="[問題](https://codeforces.com/contest/1234/problem/B2)## 方針メッセージアプリは k 人の会話を表示できる。k 人以上のメッセージが来たとき、画面から古いメッセージを消していく。新しいメッセージは一番上に表示される。画面上に表示されている同じ人からのメッセージの表示位置は変わらない。n 件のメッセージがくるので最終的に画面上に表示され">
+    <title>Codeforces Round 590 B2. Social Network (hard version)</title>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML" type="text/javascript"></script>
+        <!--[if lt IE 9]>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+            <![endif]-->
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/copy_button.js"></script>
+    <script src="../../js/notify.js"></script>
+    <link rel="stylesheet" href="../../css/main.css">
+
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@kobyn42" />
+    <meta name="twitter:creator" content="@kobyn" />
+
+
+</head>
+
+<body>
+    <header>
+        <h1>
+            <a href="https://kobyn.net">kobyn.net</a> / <a href="https://kobyn.net/competitive-programming/index.html">Competitive Programming</a>
+        </h1>
+    </header>
+    <h1 id="title">Codeforces Round 590 B2. Social Network (hard version)</h1>
+    <p>公開日：2019-10-16<br />
+        更新日：-
+    </p>
+    <div class="categories">
+        <a href=../tags/index.html#Codeforces>Codeforces</a><a href=../tags/index.html#データ構造>データ構造</a>
+    </div>
+    <div class="md2html-container">
+
+                <p><a href="https://codeforces.com/contest/1234/problem/B2">問題</a></p>
+<h2 id="方針">方針</h2>
+<p>メッセージアプリは <span class="math inline">\(k\)</span> 人の会話を表示できる。 <span class="math inline">\(k\)</span> 人以上のメッセージが来たとき、画面から古いメッセージを消していく。 新しいメッセージは一番上に表示される。 画面上に表示されている同じ人からのメッセージの表示位置は変わらない。 <span class="math inline">\(n\)</span> 件のメッセージがくるので最終的に画面上に表示されている <span class="math inline">\(id\)</span> を答える。</p>
+<p><span class="math inline">\(O(n^2)\)</span> の解法はすぐに思いつく。 しかし、制約から不可能なのでより高速な解法を考える。</p>
+<p>画面上に表示されている <span class="math inline">\(id\)</span> を管理するのと、次にくるメッセージが現在画面上に表示されているかを管理するのを分けて考える。 表示されている <span class="math inline">\(id\)</span> を管理するのは <code>std::queue</code> を用いる。 FIFO 構造を使うことで画面の表示を再現できる。（古いメッセージから先入れして、新しいメッセージが来たら先出しする） 次に来るメッセージが画面上に存在しているかのチェックは <code>std::set</code> を用いる。 <code>count()</code> は <span class="math inline">\(\log N\)</span> の計算量で高速に存在チェックできる。 <code>erase()</code> も <span class="math inline">\(\log N\)</span> の計算量で削除できる。</p>
+<h2 id="解法">解法</h2>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int main() {
+    int N, K;
+    cin &gt;&gt; N &gt;&gt; K;
+
+    queue&lt;int&gt; que;
+    set&lt;int&gt; st;
+
+    for (int i = 0; i &lt; N; i++) {
+        int id;
+        cin &gt;&gt; id;
+        if (!st.count(id)) {
+            if (K == que.size()) {
+                int rm = que.front();
+                que.pop();
+                st.erase(rm);
+            }
+            que.push(id);
+            st.insert(id);
+        }
+    }
+
+    // que は古いほうが先頭なので答えは que の逆順
+    vector&lt;int&gt; ans;
+    ans.reserve(que.size());
+    for (int i = 0; i &lt; st.size(); i++) {
+        int now = que.front();
+        que.pop();
+        ans.emplace_back(now);
+    }
+    reverse(ans.begin(), ans.end());
+
+    cout &lt;&lt; ans.size() &lt;&lt; endl;
+    for (int i = 0; i &lt; ans.size(); i++) {
+        cout &lt;&lt; ans[i] &lt;&lt; (i == ans.size() - 1 ? &#39;\n&#39; : &#39; &#39;);
+    }
+
+    return 0;
+}</code></pre>
+            </div>
+</body>
+
+<footer>
+    <a rel=license href=http://creativecommons.org/licenses/by/4.0/><img alt=クリエイティブ・コモンズ・ライセンス style=border-width:0 src=https://i.creativecommons.org/l/by/4.0/88x31.png /></a><br /><a rel=license href=http://creativecommons.org/licenses/by/4.0/>クリエイティブ・コモンズ 表示 4.0 国際 ライセンス</a>の下に提供されています。
+</footer>
+
+</html>
