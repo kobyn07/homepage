@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta name="author" content="kobyn">
+        <meta name="dcterms.date" content="2019-10-29">
+        <meta name="discription" content="引数の約数を列挙する。ソートはされていない。計算量：(\sqrt{N}) <typename T> vector<T> divisor(T N) {    vector<T> ret;    if (N == 1) {        ret.emplace_back(1);        return ret;    }    if(N <">
+    <title>約数列挙</title>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML" type="text/javascript"></script>
+        <!--[if lt IE 9]>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+            <![endif]-->
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../../js/copy_button.js"></script>
+    <script src="../../../js/notify.js"></script>
+    <link rel="stylesheet" href="../../../css/main.css">
+
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@kobyn42" />
+    <meta name="twitter:creator" content="@kobyn" />
+
+
+</head>
+
+<body>
+    <header>
+        <h1>
+            <a href="https://kobyn.net">kobyn.net</a> / <a href="../../index.html">Competitive Programming</a> / <a
+                href="../index.html">Library</a>
+        </h1>
+    </header>
+    <h1 id="title">約数列挙</h1>
+    <p>更新日：2019-10-29
+    </p>
+
+    <div class="md2html-container">
+
+                <p>引数の約数を列挙する。 ソートはされていない。</p>
+<p>計算量：<span class="math inline">\(O(\sqrt{N})\)</span></p>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="kw">template</span> &lt;<span class="kw">typename</span> T&gt; vector&lt;T&gt; divisor(T N) {
+    vector&lt;T&gt; ret;
+    <span class="cf">if</span> (N == <span class="dv">1</span>) {
+        ret.emplace_back(<span class="dv">1</span>);
+        <span class="cf">return</span> ret;
+    }
+    <span class="cf">if</span>(N &lt;= <span class="dv">0</span>) {
+        <span class="cf">return</span> ret;
+    }
+    <span class="cf">for</span> (<span class="dt">unsigned</span> <span class="dt">long</span> <span class="dt">long</span> i = <span class="dv">1</span>; i * i &lt;= N; i++) {
+        <span class="cf">if</span> (N % i == <span class="dv">0</span>) {
+            ret.emplace_back(i);
+            <span class="cf">if</span> (i != <span class="dv">1</span> &amp;&amp; i * i != N) {
+                ret.emplace_back(N / i);
+            }
+        }
+    }
+    ret.emplace_back(N);
+    <span class="cf">return</span> ret;
+}</code></pre></div>
+            </div>
+</body>
+
+<footer>
+    <a rel=license href=http://creativecommons.org/licenses/by/4.0/><img alt=クリエイティブ・コモンズ・ライセンス style=border-width:0 src=https://i.creativecommons.org/l/by/4.0/88x31.png /></a><br /><a rel=license href=http://creativecommons.org/licenses/by/4.0/>クリエイティブ・コモンズ 表示 4.0 国際 ライセンス</a>の下に提供されています。
+</footer>
+
+</html>
