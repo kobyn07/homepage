@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta name="author" content="kobyn">
+        <meta name="dcterms.date" content="2019-11-21">
+            <meta name="discription" content="[問題](https://atcoder.jp/contests/abc033/tasks/abc033_c)## 方針数式Sには演算子が+と*しか出てこない。演算子は*のほうが高く、それ以上の計算順序は存在しない。目標は式の計算値を0にしたい。つまり、+で区切られた区間が0になればよい。## 解法cpp#include <bits/stdc++.h>using name">
+    <title>AtCoder Beginner Contest 033 C - 数式の書き換え</title>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML" type="text/javascript"></script>
+        <!--[if lt IE 9]>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+            <![endif]-->
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/copy_button.js"></script>
+    <script src="../../js/notify.js"></script>
+    <link rel="stylesheet" href="../../css/main.css">
+
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@kobyn42" />
+    <meta name="twitter:creator" content="@kobyn" />
+
+
+</head>
+
+<body>
+    <header>
+        <h1>
+            <a href="https://kobyn.net">kobyn.net</a> / <a href="https://kobyn.net/competitive-programming/index.html">Competitive Programming</a>
+        </h1>
+    </header>
+    <h1 id="title">AtCoder Beginner Contest 033 C - 数式の書き換え</h1>
+    <p>公開日：2019-11-21<br />
+        更新日：-
+    </p>
+    <div class="categories">
+        <a href=../tags/index.html#atcoder>AtCoder</a><a href=../tags/index.html#場合分け>場合分け</a><a href=../tags/index.html#注意力>注意力</a>
+    </div>
+    <div class="md2html-container">
+
+                <p><a href="https://atcoder.jp/contests/abc033/tasks/abc033_c">問題</a></p>
+<h2 id="方針">方針</h2>
+<p>数式<span class="math inline">\(S\)</span>には演算子が<code>+</code>と<code>*</code>しか出てこない。 演算子は<code>*</code>のほうが高く、それ以上の計算順序は存在しない。 目標は式の計算値を0にしたい。 つまり、<code>+</code>で区切られた区間が0になればよい。</p>
+<h2 id="解法">解法</h2>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> std;
+
+<span class="dt">int</span> main() {
+    string s;
+    cin &gt;&gt; s;
+
+    <span class="dt">int</span> ans = <span class="dv">0</span>;
+    <span class="dt">int</span> cnt = s[<span class="dv">0</span>] - <span class="st">&#39;0&#39;</span>;
+
+    <span class="cf">for</span> (<span class="dt">size_t</span> i = <span class="dv">1</span>; i &lt; s.size(); i += <span class="dv">2</span>) {
+        <span class="cf">if</span> (s[i] == <span class="st">&#39;+&#39;</span>) {
+            <span class="cf">if</span> (cnt)
+                ans++;
+            cnt = s[i + <span class="dv">1</span>] - <span class="st">&#39;0&#39;</span>;
+        } <span class="cf">else</span> {
+            cnt *= s[i + <span class="dv">1</span>] - <span class="st">&#39;0&#39;</span>;
+            <span class="co">// オーバーフローの可能性がある</span>
+            <span class="cf">if</span> (cnt)
+                cnt = <span class="dv">1</span>;
+        }
+    }
+    <span class="cf">if</span> (cnt)
+        ans++;
+    cout &lt;&lt; ans &lt;&lt; endl;
+
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+            </div>
+</body>
+
+<footer>
+    <a rel=license href=http://creativecommons.org/licenses/by/4.0/><img alt=クリエイティブ・コモンズ・ライセンス style=border-width:0 src=https://i.creativecommons.org/l/by/4.0/88x31.png /></a><br /><a rel=license href=http://creativecommons.org/licenses/by/4.0/>クリエイティブ・コモンズ 表示 4.0 国際 ライセンス</a>の下に提供されています。
+</footer>
+
+</html>
