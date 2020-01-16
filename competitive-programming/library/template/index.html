@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <meta name="author" content="kobyn">
-        <meta name="dcterms.date" content="2019-09-26">
+        <meta name="dcterms.date" content="2020-01-16">
         <meta name="discription" content="これは競技が始まる前に用意しているテンプレートファイルです。見ればわかりますが、かなり冗長です。ライブラリの方針として、長くなっても便利ならヨシ！の精神でやっています。#include <bits/stdc++.h>、define や using namespace std; などは競技プログラミングなので許してください……。入力と出力の関数は main 関数の見た目がすっ">
     <title>テンプレートファイル</title>
             <!--[if lt IE 9]>
@@ -35,7 +35,7 @@
         </h1>
     </header>
     <h1 id="title">テンプレートファイル</h1>
-    <p>更新日：2019-09-26
+    <p>更新日：2020-01-16
     </p>
 
     <div class="md2html-container">
@@ -44,20 +44,28 @@
 <p>見ればわかりますが、かなり冗長です。 ライブラリの方針として、長くなっても便利ならヨシ！の精神でやっています。</p>
 <p><code>#include &lt;bits/stdc++.h&gt;</code>、<code>define</code> や <code>using namespace std;</code> などは競技プログラミングなので許してください……。 入力と出力の関数は main 関数の見た目がすっきりするので使っています。</p>
 <p><code>cin.tie(0);</code> と <code>ios::sync_with_stdio(false);</code> は入出力高速化です。 大量の入出力のときに威力を発揮します。</p>
-<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span>
-<span class="pp">#define SORT(a) sort(a.begin(), a.end())</span>
-<span class="pp">#define RSORT(a) sort(a.rbegin(), a.rend())</span>
-<span class="pp">#define REP(i, n) for (int i = 0; i &lt; n; i++)</span>
-<span class="pp">#define RREP(i, n) for (int i = n - 1; 0 &lt;= i; i--)</span>
-<span class="pp">#define FOR(i, start, end) for (int i = start; i &lt; end; i++)</span>
-<span class="pp">#define RFOR(i, start, end) for (int i = start - 1; 0 &lt;= i; i--)</span>
-<span class="pp">#define ALL(a) a.begin(), a.end()</span>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="pp">#pragma region Template</span>
+<span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span>
+<span class="pp">#ifdef _DEBUG</span>
+<span class="pp">#include </span><span class="im">&quot;../../../debug_print.hpp&quot;</span>
+<span class="pp">#else</span>
+<span class="pp">#define debug(...)</span>
+<span class="pp">#endif</span>
+<span class="pp">#define sort_(a) sort(a.begin(), a.end())</span>
+<span class="pp">#define rsort(a) sort(a.rbegin(), a.rend())</span>
+<span class="pp">#define rep(i, n) for (int i = 0; i &lt; n; i++)</span>
+<span class="pp">#define rrep(i, n) for (int i = n - 1; 0 &lt;= i; i--)</span>
+<span class="pp">#define for_(i, start, end) for (int i = start; i &lt; end; i++)</span>
+<span class="pp">#define rfor(i, start, end) for (int i = start - 1; 0 &lt;= i; i--)</span>
+<span class="pp">#define all(a) a.begin(), a.end()</span>
 <span class="kw">using</span> ll = <span class="dt">long</span> <span class="dt">long</span>;
+<span class="kw">using</span> ld = <span class="dt">long</span> <span class="dt">double</span>;
 <span class="kw">using</span> <span class="kw">namespace</span> std;
 <span class="kw">constexpr</span> <span class="dt">int</span> INF32       = <span class="dv">1&#39;050&#39;000&#39;000</span>;
 <span class="kw">constexpr</span> <span class="dt">long</span> <span class="dt">long</span> INF64 = <span class="dv">4&#39;000&#39;000&#39;000&#39;000&#39;000&#39;000</span>;
 <span class="kw">constexpr</span> <span class="dt">int</span> MOD7        = <span class="dv">1&#39;000&#39;000&#39;007</span>;
 <span class="kw">constexpr</span> <span class="dt">int</span> MOD53       = <span class="dv">998&#39;244&#39;353</span>;
+<span class="kw">constexpr</span> <span class="dt">double</span> PI       = <span class="fl">3.14159265358979323846</span>;
 <span class="kw">template</span> &lt;<span class="kw">class</span> T&gt; <span class="kw">inline</span> <span class="dt">bool</span> chmin(T &amp;a, T b) {
     <span class="cf">if</span> (a &gt; b) {
         a = b;
@@ -102,13 +110,14 @@
         scan(i);
     }
 }
+<span class="pp">#pragma endregion Template</span>
+
 
 
 
 <span class="dt">int</span> main() {
     cin.tie(<span class="dv">0</span>);
     ios::sync_with_stdio(<span class="kw">false</span>);
-
 
 
     <span class="cf">return</span> <span class="dv">0</span>;
