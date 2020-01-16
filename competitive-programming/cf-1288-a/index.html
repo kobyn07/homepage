@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta name="author" content="kobyn">
+        <meta name="dcterms.date" content="2020-01-16">
+            <meta name="discription" content="[問題](https://codeforces.com/problemset/problem/1288/A)## 方針d日かかるプログラムがある。n日までにプログラムを完了する必要がある。開始から、x日目にプログラムを最適化したので、x + lceil frac{d}{x+1}rceil日でプログラムを終了することができた。n日までに終了するかYES/NOで答えよ。プ">
+    <title>Codeforces 1288 A. Deadline</title>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML" type="text/javascript"></script>
+        <!--[if lt IE 9]>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+            <![endif]-->
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/copy_button.js"></script>
+    <script src="../../js/notify.js"></script>
+    <link rel="stylesheet" href="../../css/main.css">
+
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@kobyn42" />
+    <meta name="twitter:creator" content="@kobyn" />
+
+
+</head>
+
+<body>
+    <header>
+        <h1>
+            <a href="https://kobyn.net">kobyn.net</a> / <a href="https://kobyn.net/competitive-programming/index.html">Competitive Programming</a>
+        </h1>
+    </header>
+    <h1 id="title">Codeforces 1288 A. Deadline</h1>
+    <p>公開日：2020-01-16<br />
+        更新日：-
+    </p>
+    <div class="categories">
+        <a href=../tags/index.html#codeforces>Codeforces</a><a href=../tags/index.html#wolframalpha>wolframAlpha</a>
+    </div>
+    <div class="md2html-container">
+
+                <p><a href="https://codeforces.com/problemset/problem/1288/A">問題</a></p>
+<h2 id="方針">方針</h2>
+<p><span class="math inline">\(d\)</span>日かかるプログラムがある。 <span class="math inline">\(n\)</span>日までにプログラムを完了する必要がある。 開始から、<span class="math inline">\(x\)</span>日目にプログラムを最適化したので、<span class="math inline">\(x + \lceil \frac{d}{x+1}\rceil\)</span>日でプログラムを終了することができた。 <span class="math inline">\(n\)</span>日までに終了するか<code>YES/NO</code>で答えよ。</p>
+<p>プログラム最適化後の<span class="math inline">\(x + \lceil \frac{d}{x+1}\rceil\)</span>の動きがよくわからないので、<a href="https://ja.wolframalpha.com/input/?i=y+%3D+x+%2B+%2810%2F%28x%2B1%29%29">WolframaAlpha 先生</a> に聞いてみる（リンク先は適当に <span class="math inline">\(d=10\)</span>にした。） ほしいのは <span class="math inline">\(x\)</span>の最小値が <span class="math inline">\(n\)</span> 以下かどうかである。 極小値の欄をみると <span class="math inline">\(x = \sqrt{d}-1\)</span>が答えらしいので、その付近を適当にシミュレーションする。</p>
+<h2 id="解法">解法</h2>
+<p>(https://codeforces.com/contest/1288/submission/68916680)</p>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="pp">#pragma region Template</span>
+
+<span class="dt">int</span> main() {
+    cin.tie(<span class="dv">0</span>);
+    ios::sync_with_stdio(<span class="kw">false</span>);
+
+    <span class="dt">int</span> T;
+    scan(T);
+    rep(_, T) {
+        <span class="dt">int</span> n, d;
+        scan(n, d);
+        <span class="dt">bool</span> f = <span class="kw">false</span>;
+        rep(x, sqrt(d) + <span class="dv">2</span>) {
+            <span class="dt">int</span> day = x + ceil(d / (x + <span class="fl">1.0</span>));
+            <span class="cf">if</span> (!f &amp;&amp; day &lt;= n) {
+                debug(day);
+                f = <span class="kw">true</span>;
+            }
+        }
+        <span class="cf">if</span> (f)
+            print(<span class="st">&quot;YES&quot;</span>);
+        <span class="cf">else</span>
+            print(<span class="st">&quot;NO&quot;</span>);
+    }
+
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+            </div>
+</body>
+
+<footer>
+    <a rel=license href=http://creativecommons.org/licenses/by/4.0/><img alt=クリエイティブ・コモンズ・ライセンス style=border-width:0 src=https://i.creativecommons.org/l/by/4.0/88x31.png /></a><br /><a rel=license href=http://creativecommons.org/licenses/by/4.0/>クリエイティブ・コモンズ 表示 4.0 国際 ライセンス</a>の下に提供されています。
+</footer>
+
+</html>
