@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta name="author" content="kobyn">
+        <meta name="dcterms.date" content="2020-01-18">
+            <meta name="discription" content="bashsudo apt install dbus-x11service dbus startsudo add-apt-repository ppa:mozillateam/ppasudo apt update && sudo apt upgrade -ysudo apt install firefox-esr firefox-esr-locale-jaたぶんこれで動くと思う。GUI">
+    <title>Firefox のインストール (WSL)</title>
+            <!--[if lt IE 9]>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+            <![endif]-->
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/copy_button.js"></script>
+    <script src="../../js/notify.js"></script>
+    <link rel="stylesheet" href="../../css/main.css">
+
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@kobyn42" />
+    <meta name="twitter:creator" content="@kobyn" />
+
+
+</head>
+
+<body>
+    <header>
+        <h1>
+            <a href="https://kobyn.net">kobyn.net</a> / <a href="https://kobyn.net/technical-note/index.html">Technical Note</a>
+        </h1>
+    </header>
+    <h1 id="title">Firefox のインストール (WSL)</h1>
+    <p>公開日：2020-01-18<br />
+        更新日：-
+    </p>
+    <div class="categories">
+        <a href=../tags/index.html#wsl>WSL</a>
+    </div>
+    <div class="md2html-container">
+
+                <div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="fu">sudo</span> apt install dbus-x11
+<span class="ex">service</span> dbus start
+<span class="fu">sudo</span> add-apt-repository ppa:mozillateam/ppa
+<span class="fu">sudo</span> apt update <span class="kw">&amp;&amp;</span> <span class="fu">sudo</span> apt upgrade -y
+<span class="fu">sudo</span> apt install firefox-esr firefox-esr-locale-ja</code></pre></div>
+<p>たぶんこれで動くと思う。 GUI を開くので X-Window を起動しないと失敗する（それはそう）。</p>
+            </div>
+</body>
+
+<footer>
+    <a rel=license href=http://creativecommons.org/licenses/by-nc-nd/4.0/><img alt=クリエイティブ・コモンズ・ライセンス style=border-width:0 src=https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png /></a><br /><a rel=license href=http://creativecommons.org/licenses/by-nc-nd/4.0/>クリエイティブ・コモンズ 表示 - 非営利 - 改変禁止 4.0 国際 ライセンス</a>の下に提供されています。
+</footer>
+
+</html>
