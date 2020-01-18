@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta name="author" content="kobyn">
+        <meta name="dcterms.date" content="2020-01-18">
+            <meta name="discription" content="## 0...n の連番bashtouch {0..n}_test.txt00, 01, 02, ... みたいなことをしたいとき、bashtouch {00..n}_test.txt## a...t の連番bashtouch {a..t}_test.txt">
+    <title>touch コマンドで連番ファイルを作る</title>
+            <!--[if lt IE 9]>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+            <![endif]-->
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/copy_button.js"></script>
+    <script src="../../js/notify.js"></script>
+    <link rel="stylesheet" href="../../css/main.css">
+
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@kobyn42" />
+    <meta name="twitter:creator" content="@kobyn" />
+
+
+</head>
+
+<body>
+    <header>
+        <h1>
+            <a href="https://kobyn.net">kobyn.net</a> / <a href="https://kobyn.net/technical-note/index.html">Technical Note</a>
+        </h1>
+    </header>
+    <h1 id="title">touch コマンドで連番ファイルを作る</h1>
+    <p>公開日：2020-01-18<br />
+        更新日：-
+    </p>
+    <div class="categories">
+        <a href=../tags/index.html#bash>bash</a>
+    </div>
+    <div class="md2html-container">
+
+                <h2 id="n-の連番">0...n の連番</h2>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="fu">touch</span> <span class="dt">{0..n}</span>_test.txt</code></pre></div>
+<p>00, 01, 02, ... みたいなことをしたいとき、</p>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="fu">touch</span> <span class="dt">{00..n}</span>_test.txt</code></pre></div>
+<h2 id="a...t-の連番">a...t の連番</h2>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="fu">touch</span> <span class="dt">{a..t}</span>_test.txt</code></pre></div>
+            </div>
+</body>
+
+<footer>
+    <a rel=license href=http://creativecommons.org/licenses/by-nc-nd/4.0/><img alt=クリエイティブ・コモンズ・ライセンス style=border-width:0 src=https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png /></a><br /><a rel=license href=http://creativecommons.org/licenses/by-nc-nd/4.0/>クリエイティブ・コモンズ 表示 - 非営利 - 改変禁止 4.0 国際 ライセンス</a>の下に提供されています。
+</footer>
+
+</html>
