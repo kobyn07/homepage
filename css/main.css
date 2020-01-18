@@ -49,6 +49,7 @@ div.categories a{
     border-radius: 3px;
     text-decoration: none;
     color: black;
+    word-wrap: break-word;
 }
 
 body > *:first-child {
