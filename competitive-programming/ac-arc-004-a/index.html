@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta name="author" content="kobyn">
+        <meta name="dcterms.date" content="2020-01-19">
+            <meta name="discription" content="[問題](https://atcoder.jp/contests/arc004/tasks/arc004_1)## 方針素直に全探索で間に合う。計算量：O(N^2)[AC解](https://atcoder.jp/contests/arc004/submissions/9588941)## 便利な関数 std::hypot2点間の距離を計算するのにいちいち sqrt{(x_i - x_">
+    <title>AtCoder Regular Contest 004 A - 2点間距離の最大値 ( The longest distance )</title>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML" type="text/javascript"></script>
+        <!--[if lt IE 9]>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+            <![endif]-->
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/copy_button.js"></script>
+    <script src="../../js/notify.js"></script>
+    <link rel="stylesheet" href="../../css/main.css">
+
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@kobyn42" />
+    <meta name="twitter:creator" content="@kobyn" />
+
+
+</head>
+
+<body>
+    <header>
+        <h1>
+            <a href="https://kobyn.net">kobyn.net</a> / <a href="https://kobyn.net/competitive-programming/index.html">Competitive Programming</a>
+        </h1>
+    </header>
+    <h1 id="title">AtCoder Regular Contest 004 A - 2点間距離の最大値 ( The longest distance )</h1>
+    <p>公開日：2020-01-19<br />
+        更新日：-
+    </p>
+    <div class="categories">
+        <a href=../tags/index.html#atcoder>AtCoder</a><a href=../tags/index.html#全探索>全探索</a>
+    </div>
+    <div class="md2html-container">
+
+                <p><a href="https://atcoder.jp/contests/arc004/tasks/arc004_1">問題</a></p>
+<h2 id="方針">方針</h2>
+<p>素直に全探索で間に合う。</p>
+<p>計算量：<span class="math inline">\(O(N^2)\)</span></p>
+<p><a href="https://atcoder.jp/contests/arc004/submissions/9588941">AC解</a></p>
+<h2 id="便利な関数-stdhypot">便利な関数 <code>std::hypot</code></h2>
+<p>2点間の距離を計算するのにいちいち <span class="math inline">\(\sqrt{(x_i - x_j)^2 + (y_i - y_j)^2}\)</span> とかめんどくさい。 そこで便利な関数 <code>std::hypot</code> を使う。 上の式と同等の計算をしてくれるので便利。</p>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="dt">double</span> dist = <span class="bu">std::</span>hypot((xi - xj), (yi - yj));</code></pre></div>
+<p><a href="https://cpprefjp.github.io/reference/cmath/hypot.html">詳しくはこちらを見ること</a></p>
+            </div>
+</body>
+
+<footer>
+    <a rel=license href=http://creativecommons.org/licenses/by/4.0/><img alt=クリエイティブ・コモンズ・ライセンス style=border-width:0 src=https://i.creativecommons.org/l/by/4.0/88x31.png /></a><br /><a rel=license href=http://creativecommons.org/licenses/by/4.0/>クリエイティブ・コモンズ 表示 4.0 国際 ライセンス</a>の下に提供されています。
+</footer>
+
+</html>
