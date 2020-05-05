@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta name="author" content="kobyn">
+        <meta name="dcterms.date" content="2020-05-05">
+            <meta name="discription" content="## shelllatexindent が動かなかったので、いくつか perl のスクリプトをインストールする必要があった。shsudo apt install texlive-lang-japanese texlive-science latexmk cpanminussudo cpanm Log::Log4perl Log::Dispatch::File YAML::Tiny File:">
+    <title>WSL 上で LaTex をインストールする方法</title>
+            <!--[if lt IE 9]>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+            <![endif]-->
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/copy_button.js"></script>
+    <script src="../../js/notify.js"></script>
+    <link rel="stylesheet" href="../../css/main.css">
+
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@kobyn42" />
+    <meta name="twitter:creator" content="@kobyn" />
+
+
+</head>
+
+<body>
+    <header>
+        <h1>
+            <a href="https://kobyn.net">kobyn.net</a> / <a href="https://kobyn.net/technical-note/index.html">Technical Note</a>
+        </h1>
+    </header>
+    <h1 id="title">WSL 上で LaTex をインストールする方法</h1>
+    <p>公開日：2020-05-05<br />
+        更新日：-
+    </p>
+    <div class="categories">
+        <a href=../tags/index.html#wsl>WSL</a><a href=../tags/index.html#latex>LaTex</a>
+    </div>
+    <div class="md2html-container">
+
+                <h2 id="shell">shell</h2>
+<p>latexindent が動かなかったので、いくつか perl のスクリプトをインストールする必要があった。</p>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="fu">sudo</span> apt install texlive-lang-japanese texlive-science latexmk cpanminus
+<span class="fu">sudo</span> cpanm Log::Log4perl Log::Dispatch::File YAML::Tiny File::HomeDir Unicode::GCString</code></pre></div>
+<h2 id="settings.json">settings.json</h2>
+<p>VS Code 側の設定。</p>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="er">&quot;latex-workshop.latex.recipes&quot;:</span> <span class="ot">[</span>
+        <span class="fu">{</span>
+            <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;latexmk (tex to PDF)&quot;</span><span class="fu">,</span>
+            <span class="dt">&quot;tools&quot;</span><span class="fu">:</span> <span class="ot">[</span>
+                <span class="st">&quot;latexmk&quot;</span>
+            <span class="ot">]</span>
+        <span class="fu">}</span>
+    <span class="ot">]</span><span class="er">,</span>
+    <span class="er">&quot;latex-workshop.latex.tools&quot;:</span> <span class="ot">[</span>
+        <span class="fu">{</span>
+            <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;latexmk&quot;</span><span class="fu">,</span>
+            <span class="dt">&quot;command&quot;</span><span class="fu">:</span> <span class="st">&quot;latexmk&quot;</span><span class="fu">,</span>
+            <span class="dt">&quot;args&quot;</span><span class="fu">:</span> <span class="ot">[</span>
+                <span class="st">&quot;-e&quot;</span><span class="ot">,</span>
+                <span class="st">&quot;$latex=q/uplatex %O -kanji=utf8 -no-guess-input-enc -synctex=1 -interaction=nonstopmode -file-line-error %S/&quot;</span><span class="ot">,</span>
+                <span class="st">&quot;-e&quot;</span><span class="ot">,</span>
+                <span class="st">&quot;$bibtex=q/upbibtex %O %B/&quot;</span><span class="ot">,</span>
+                <span class="st">&quot;-e&quot;</span><span class="ot">,</span>
+                <span class="st">&quot;$biber=q/biber %O --bblencoding=utf8 -u -U --output_safechars %B/&quot;</span><span class="ot">,</span>
+                <span class="st">&quot;-e&quot;</span><span class="ot">,</span>
+                <span class="st">&quot;$makeindex=q/upmendex %O -o %D %S/&quot;</span><span class="ot">,</span>
+                <span class="st">&quot;-e&quot;</span><span class="ot">,</span>
+                <span class="st">&quot;$dvipdf=q/dvipdfmx %O -o %D %S/&quot;</span><span class="ot">,</span>
+                <span class="st">&quot;-norc&quot;</span><span class="ot">,</span>
+                <span class="st">&quot;-pdfdvi&quot;</span><span class="ot">,</span>
+                <span class="st">&quot;%DOCFILE%&quot;</span>
+            <span class="ot">]</span>
+        <span class="fu">}</span>
+    <span class="ot">]</span><span class="er">,</span></code></pre></div>
+<h2 id="参考ページ">参考ページ</h2>
+<ul>
+<li><a href="https://qiita.com/khys/items/332c3a3f34a82acf7a7a">[LaTeX] [Mojave] Mac で latexindent が上手く動作しないときの対処法</a></li>
+</ul>
+            </div>
+</body>
+
+<footer>
+    <a rel=license href=http://creativecommons.org/licenses/by-nc-nd/4.0/><img alt=クリエイティブ・コモンズ・ライセンス style=border-width:0 src=https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png /></a><br /><a rel=license href=http://creativecommons.org/licenses/by-nc-nd/4.0/>クリエイティブ・コモンズ 表示 - 非営利 - 改変禁止 4.0 国際 ライセンス</a>の下に提供されています。
+</footer>
+
+</html>
