@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta name="author" content="kobyn">
+        <meta name="dcterms.date" content="2020-05-26">
+            <meta name="discription" content="## 文字アクセスC++ みたいに添え字で文字アクセスすることはできない。cpp// C++でできることStirng a = hoge_fuga;a[0] // == 'h'Rustではこうする。rslet a = String::from(hoge_fuga);a.char_inices().nth(0).unwrap().1 // == 'h'逆順にアクセスした">
+    <title>文字列操作 in Rust</title>
+            <!--[if lt IE 9]>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+            <![endif]-->
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/copy_button.js"></script>
+    <script src="../../js/notify.js"></script>
+    <link rel="stylesheet" href="../../css/main.css">
+
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@kobyn42" />
+    <meta name="twitter:creator" content="@kobyn" />
+
+
+</head>
+
+<body>
+    <header>
+        <h1>
+            <a href="https://kobyn.net">kobyn.net</a> / <a href="https://kobyn.net/technical-note/index.html">Technical Note</a>
+        </h1>
+    </header>
+    <h1 id="title">文字列操作 in Rust</h1>
+    <p>公開日：2020-05-26<br />
+        更新日：-
+    </p>
+    <div class="categories">
+        <a href=../tags/index.html#rust>Rust</a>
+    </div>
+    <div class="md2html-container">
+
+                <h2 id="文字アクセス">文字アクセス</h2>
+<p>C++ みたいに添え字で文字アクセスすることはできない。</p>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="co">// C++でできること</span>
+Stirng a = <span class="st">&quot;hoge_fuga&quot;</span>;
+a[<span class="dv">0</span>] <span class="co">// == &#39;h&#39;</span></code></pre></div>
+<p>Rustではこうする。</p>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="kw">let</span> a = <span class="dt">String</span>::from(<span class="st">&quot;hoge_fuga&quot;</span>);
+a.char_inices().nth(<span class="dv">0</span>).unwrap().<span class="dv">1</span> <span class="co">// == &#39;h&#39;</span></code></pre></div>
+<p>逆順にアクセスしたいときは<code>nth_back()</code>を使う。</p>
+            </div>
+</body>
+
+<footer>
+    <a rel=license href=http://creativecommons.org/licenses/by/4.0/><img alt=クリエイティブ・コモンズ・ライセンス style=border-width:0 src=https://i.creativecommons.org/l/by/4.0/88x31.png /></a><br /><a rel=license href=http://creativecommons.org/licenses/by/4.0/>クリエイティブ・コモンズ 表示 4.0 国際 ライセンス</a>の下に提供されています。
+</footer>
+
+</html>
