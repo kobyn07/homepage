@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta name="author" content="kobyn">
+        <meta name="dcterms.date" content="2020-06-24">
+            <meta name="discription" content="## pdfjoinとはpdfの結合ツール。pdfjamというパッケージの一部らしい。## 使い方hoge.pdf, fuga.pdf を結合したいとき、bashpdfjoin hoge.pdf fuga.pdf -o output.pdf連番ファイルの場合楽ができて、hoge1.pdf, ..., hoge6.pdf とすると、bashpdfjoin hoge[1-6]">
+    <title>PDFの結合 (pdfjoin)</title>
+            <!--[if lt IE 9]>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+            <![endif]-->
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/copy_button.js"></script>
+    <script src="../../js/notify.js"></script>
+    <link rel="stylesheet" href="../../css/main.css">
+
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@kobyn42" />
+    <meta name="twitter:creator" content="@kobyn" />
+
+
+</head>
+
+<body>
+    <header>
+        <h1>
+            <a href="https://kobyn.net">kobyn.net</a> / <a href="https://kobyn.net/technical-note/index.html">Technical Note</a>
+        </h1>
+    </header>
+    <h1 id="title">PDFの結合 (pdfjoin)</h1>
+    <p>公開日：2020-06-24<br />
+        更新日：-
+    </p>
+    <div class="categories">
+        <a href=../tags/index.html#pdf>pdf</a><a href=../tags/index.html#commandline>commandline</a>
+    </div>
+    <div class="md2html-container">
+
+                <h2 id="pdfjoinとは"><code>pdfjoin</code>とは</h2>
+<p>pdfの結合ツール。 <code>pdfjam</code>というパッケージの一部らしい。</p>
+<h2 id="使い方">使い方</h2>
+<p>hoge.pdf, fuga.pdf を結合したいとき、</p>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="ex">pdfjoin</span> hoge.pdf fuga.pdf -o output.pdf</code></pre></div>
+<p>連番ファイルの場合楽ができて、 hoge1.pdf, ..., hoge6.pdf とすると、</p>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="ex">pdfjoin</span> hoge[1-6].pdf -o output.pdf</code></pre></div>
+<h2 id="変な回転を止めさせる">変な回転を止めさせる</h2>
+<p>上のコマンドを使うと勝手に回転されたpdfが出てくるときがある。 単純に結合したいときは、<code>--rotateoversize false</code>のオプションを付け加える。</p>
+<h2 id="参考ページ">参考ページ</h2>
+<ul>
+<li><a href="https://github.com/DavidFirth/pdfjam">pdfjam GitHub</a></li>
+</ul>
+            </div>
+</body>
+
+<footer>
+    <a rel=license href=http://creativecommons.org/licenses/by/4.0/><img alt=クリエイティブ・コモンズ・ライセンス style=border-width:0 src=https://i.creativecommons.org/l/by/4.0/88x31.png /></a><br /><a rel=license href=http://creativecommons.org/licenses/by/4.0/>クリエイティブ・コモンズ 表示 4.0 国際 ライセンス</a>の下に提供されています。
+</footer>
+
+</html>
