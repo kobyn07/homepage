@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta name="author" content="kobyn">
+        <meta name="dcterms.date" content="2020-06-26">
+            <meta name="discription" content="## インストールsudo apt install gifsicle## 使い方### 無限ループbashgifsicle -l input.gif > output.gif-l=n で n 回繰り返すようにできる。### 繰り返さないbashgifsicle --no-loopcount input.gif > output.gif## 参考ページ* [Gifsicl">
+    <title>gif の繰り返し制御</title>
+            <!--[if lt IE 9]>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+            <![endif]-->
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/copy_button.js"></script>
+    <script src="../../js/notify.js"></script>
+    <link rel="stylesheet" href="../../css/main.css">
+
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@kobyn42" />
+    <meta name="twitter:creator" content="@kobyn" />
+
+
+</head>
+
+<body>
+    <header>
+        <h1>
+            <a href="https://kobyn.net">kobyn.net</a> / <a href="https://kobyn.net/technical-note/index.html">Technical Note</a>
+        </h1>
+    </header>
+    <h1 id="title">gif の繰り返し制御</h1>
+    <p>公開日：2020-06-26<br />
+        更新日：-
+    </p>
+    <div class="categories">
+        <a href=../tags/index.html#gif>gif</a><a href=../tags/index.html#commandline>commandline</a>
+    </div>
+    <div class="md2html-container">
+
+                <h2 id="インストール">インストール</h2>
+<p>sudo apt install gifsicle</p>
+<h2 id="使い方">使い方</h2>
+<h3 id="無限ループ">無限ループ</h3>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="ex">gifsicle</span> -l input.gif <span class="op">&gt;</span> output.gif</code></pre></div>
+<p><code>-l=n</code> で n 回繰り返すようにできる。</p>
+<h3 id="繰り返さない">繰り返さない</h3>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="ex">gifsicle</span> --no-loopcount input.gif <span class="op">&gt;</span> output.gif</code></pre></div>
+<h2 id="参考ページ">参考ページ</h2>
+<ul>
+<li><a href="https://www.lcdf.org/gifsicle/">Gifsicle</a></li>
+</ul>
+            </div>
+</body>
+
+<footer>
+    <a rel=license href=http://creativecommons.org/licenses/by/4.0/><img alt=クリエイティブ・コモンズ・ライセンス style=border-width:0 src=https://i.creativecommons.org/l/by/4.0/88x31.png /></a><br /><a rel=license href=http://creativecommons.org/licenses/by/4.0/>クリエイティブ・コモンズ 表示 4.0 国際 ライセンス</a>の下に提供されています。
+</footer>
+
+</html>
