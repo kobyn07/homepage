@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta name="author" content="kobyn">
+        <meta name="dcterms.date" content="2020-10-04">
+            <meta name="discription" content="## OS書き込み[公式サイト](https://www.raspberrypi.org/downloads/)からOSをダウンロードする。ただし、ネットワークに難があるのか、何度かダウンロード再開ボタンを押す必要があった。ミラーサーバーがあるなら、そっちを使ったほうが良かったかも。balenaEtcherというソフトを使ってOSを書き込んだ。## SSHを有効化するラズパイを起動して、シェルを開">
+    <title>ラズパイのセットアップ</title>
+            <!--[if lt IE 9]>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+            <![endif]-->
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="../../js/copy_button.js"></script>
+    <script src="../../js/notify.js"></script>
+    <link rel="stylesheet" href="../../css/main.css">
+
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@kobyn42" />
+    <meta name="twitter:creator" content="@kobyn" />
+
+
+</head>
+
+<body>
+    <header>
+        <h1>
+            <a href="https://kobyn.net">kobyn.net</a> / <a href="https://kobyn.net/technical-note/index.html">Technical Note</a>
+        </h1>
+    </header>
+    <h1 id="title">ラズパイのセットアップ</h1>
+    <p>公開日：2020-10-04<br />
+        更新日：-
+    </p>
+    <div class="categories">
+        <a href=../tags/index.html#raspberry-pi>Raspberry Pi</a>
+    </div>
+    <div class="md2html-container">
+
+                <h2 id="os書き込み">OS書き込み</h2>
+<p><a href="https://www.raspberrypi.org/downloads/">公式サイト</a>からOSをダウンロードする。 ただし、ネットワークに難があるのか、何度かダウンロード再開ボタンを押す必要があった。 ミラーサーバーがあるなら、そっちを使ったほうが良かったかも。</p>
+<p>balenaEtcherというソフトを使ってOSを書き込んだ。</p>
+<h2 id="sshを有効化する">SSHを有効化する</h2>
+<p>ラズパイを起動して、シェルを開く。</p>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="fu">sudo</span> touch /boot/ssh
+<span class="fu">sudo</span> raspi-config</code></pre></div>
+<p><code>Interfacing Options</code>を選んでSSHを有効化する。</p>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="ex">ip</span> a</code></pre></div>
+<p>で自分のIPアドレスをメモしておく。</p>
+<h2 id="起動するときはconsoleモードにする">起動するときはConsoleモードにする</h2>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="fu">sudo</span> raspi-config</code></pre></div>
+<p><code>Boot Options</code>→<code>Console</code>を選んだら完了。</p>
+<h2 id="sshでログインする">SSHでログインする</h2>
+<p>クライアント側のパソコンでSSHができるか確認する。</p>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="fu">ssh</span> pi@ip</code></pre></div>
+<h2 id="piユーザ名を変更する">piユーザ名を変更する</h2>
+<p>作業用のユーザを作成する。</p>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="fu">sudo</span> useradd -M tmp
+<span class="fu">sudo</span> gpasswd -a tmp sudo
+<span class="fu">sudo</span> passwd tmp</code></pre></div>
+<p>piユーザは電源を入れると自動ログインするので、それを止めさせる。</p>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="fu">sudo</span> nano /etc/lightdm/lightdm.conf</code></pre></div>
+<p><code>autologin-user=pi</code>を<code>#</code>でコメントアウトする。</p>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="fu">sudo</span> nano /etc/systemd/system/autologin@.service</code></pre></div>
+<p><code>ExecStart=-/sbin/agetty --autologin newuser --noclear %I $TERM</code>を<code>ExecStart=-/sbin/agetty --autologin tmp --noclear %I $TERM</code>にすれば完了。</p>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="fu">sudo</span> reboot now</code></pre></div>
+<p>再起動する。</p>
+<p><code>tmp</code>ユーザでSSHする。</p>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="fu">ssh</span> tmp@ip</code></pre></div>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="fu">who</span></code></pre></div>
+<p>これで<code>pi</code>ユーザがいなかったら成功している。</p>
+<p><code>pi</code>ユーザの名前を変更する。</p>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="fu">sudo</span> usermod -l newpi pi
+<span class="fu">sudo</span> usermod -d /home/newpi -m newpi
+<span class="fu">sudo</span> groupmod -n newpi pi
+<span class="bu">exit</span></code></pre></div>
+<p>名前を変更したユーザで再度SSHする。 パスワードは<code>pi</code>ユーザでログインしたときのものと同じである。</p>
+<p><code>tmp</code>ユーザを削除する。</p>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="fu">sudo</span> userdel tmp</code></pre></div>
+<h2 id="ホスト名を変更する">ホスト名を変更する</h2>
+<p>初期設定ではIPアドレスは変化することがある。 SSHをするとき直接IPアドレスを指定するのも面倒なので、これからは<code>@hostname.local</code>の形でログインしたい。 ラズパイを複数台使用したいときはホスト名を変えないと名前衝突してしまうので、ホスト名を変更する。</p>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="fu">sudo</span> nano /etc/hostname
+<span class="fu">sudo</span> nano /etc/hosts</code></pre></div>
+<p>両方を新しいホスト名に書き換える。 再起動する。</p>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="fu">ssh</span> newpi@newhost.local</code></pre></div>
+<p>でログインできたら成功。</p>
+<h2 id="必要そうなソフトをインストールする">必要そうなソフトをインストールする</h2>
+<div class="prettyprint"><pre class="prettyprint"><code class="prettyprint"><span class="fu">sudo</span> apt update <span class="kw">&amp;&amp;</span> <span class="fu">sudo</span> apt upgrade -y
+<span class="fu">sudo</span> apt install tmux</code></pre></div>
+<h2 id="参考ページ">参考ページ</h2>
+<ul>
+<li><a href="https://jyn.jp/raspberrypi-username-change/">[Raspbian]ユーザ名変更の個人的に「正しい」と思うやり方</a></li>
+<li><a href="https://qiita.com/t0yohei/items/f5355f8c456d9cf64679">Raspberry Pi3(ラズパイ)でpiユーザーの自動ログインを外す方法</a></li>
+<li><a href="https://www.souichi.club/raspberrypi/default-user-pi/">RaspberryPi 3 デフォルトユーザpiの変更</a></li>
+</ul>
+            </div>
+</body>
+
+<footer>
+    <a rel=license href=http://creativecommons.org/licenses/by/4.0/><img alt=クリエイティブ・コモンズ・ライセンス style=border-width:0 src=https://i.creativecommons.org/l/by/4.0/88x31.png /></a><br /><a rel=license href=http://creativecommons.org/licenses/by/4.0/>クリエイティブ・コモンズ 表示 4.0 国際 ライセンス</a>の下に提供されています。
+</footer>
+
+</html>
